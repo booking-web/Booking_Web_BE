@@ -2,3 +2,12 @@
 /website/pgadmin/azurecredentialcache
 /website/pgadmin/sessions
 /website/pgadmin/pgadmin4.db
+
+.DS_Store
+/api/.DS_Store
+/assets/s.DS_Store
+/build/.DS_Store
+/cmd/.DS_Store
+/deploy/.DS_Store
+/pkg/.DS_Store
+/website/.DS_Store
