@@ -10,7 +10,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     volumes:
-      - ../website/data:/var/lib/postgresql/data
+      - ../deploy/data:/var/lib/postgresql/data
 
   pgadmin:
     image: dpage/pgadmin4
@@ -22,7 +22,7 @@ services:
       PGADMIN_DEFAULT_EMAIL: postgres@gmail.com
       PGADMIN_DEFAULT_PASSWORD: postgres
     volumes:
-      - ../website/pgadmin:/var/lib/pgadmin
+      - ../deploy/pgadmin:/var/lib/pgadmin
 
 volumes:
   local_pgdata:

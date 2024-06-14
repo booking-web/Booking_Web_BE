@@ -1,7 +1,24 @@
 package main
 
-import "log"
+import (
+	"fmt"
+	"log"
+	"net/http"
+	"os"
+
+	"github.com/billzayy/Booking_Web_BE/internal/routes"
+	"github.com/joho/godotenv"
+)
 
 func main() {
-	log.Fatalf("Hello")
+	err := godotenv.Load("../internal/.env")
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
+	PORT := os.Getenv("PORT")
+	routes := routes.NewRouter()
+
+	fmt.Printf("Server is running on port %s\n", PORT)
+	http.ListenAndServe(":"+PORT, routes)
 }

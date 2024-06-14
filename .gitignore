@@ -1,8 +1,10 @@
-/website/data
-/website/pgadmin/azurecredentialcache
-/website/pgadmin/sessions
-/website/pgadmin/pgadmin4.db
+# folder container
+/deploy/data
+/deploy/pgadmin/azurecredentialcache
+/deploy/pgadmin/sessions
+/deploy/pgadmin/pgadmin4.db
 
+# Remove .DS_Store on mac
 .DS_Store
 /api/.DS_Store
 /assets/s.DS_Store
