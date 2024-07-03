@@ -2,7 +2,6 @@ package routes
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 )
@@ -11,6 +10,8 @@ type PostData struct {
 	ID   int    `json:"id"`
 	Name string `json:"name"`
 }
+
+var postData PostData
 
 func NewRouter() http.Handler {
 	mux := http.NewServeMux()
@@ -30,22 +31,23 @@ func GetController(w http.ResponseWriter, r *http.Request) {
 	}
 	w.Header().Set("Content-Type", "application/json")
 
-	var postData PostData
-	fmt.Println("Hello")
-	fmt.Fprint(w, postData)
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(postData)
 }
 
 func PostController(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
 		w.Header().Set("Content-Type", "application/json")
 
-		var postData PostData
-		err := json.NewDecoder(r.Body).Decode(&postData)
+		var result PostData
+		err := json.NewDecoder(r.Body).Decode(&result)
 
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusBadRequest)
 			return
 		}
+
+		postData = result
 
 		log.Printf("Received POST request with ID: %d\n", postData.ID)
 		// Here you would typically save the postData to a database
