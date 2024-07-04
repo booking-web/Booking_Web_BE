@@ -4,12 +4,18 @@ import "net/http"
 
 func NewRouter() http.Handler {
 	mux := http.NewServeMux()
-	userMux := http.NewServeMux()
 
-	userMux.HandleFunc("/get", GetController)
-	userMux.HandleFunc("/post", PostController)
+	// Group APIs
+	mux.Handle("/api/sample/", http.StripPrefix("/api/sample", sampleMux()))
 
-	mux.Handle("/api/v1/", http.StripPrefix("/api/v1", userMux))
+	return mux
+}
+
+func sampleMux() *http.ServeMux {
+	mux := http.NewServeMux()
+
+	mux.HandleFunc("/get-sample", GetSample)
+	mux.HandleFunc("/post-sample", PostSample)
 
 	return mux
 }

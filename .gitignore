@@ -1,15 +1,17 @@
-# Folder container
+# Folder deploy
 /deploy/postgresql
 /deploy/pgadmin/azurecredentialcache
 /deploy/pgadmin/sessions
 /deploy/pgadmin/pgadmin4.db
-main
-/internal/.env
-# Folder Mongodb
 /deploy/mongodb/db
 /deploy/mongodb/mongoconfig
 
-# Remove .DS_Store on mac
+# Applications
+main
+/internal/.env
+
+# Remove no neccessary file on mac
+#.DS_Store
 .DS_Store
 /api/.DS_Store
 /assets/s.DS_Store
@@ -18,3 +20,6 @@ main
 /deploy/.DS_Store
 /pkg/.DS_Store
 /website/.DS_Store
+
+#.vscode
+/.vscode

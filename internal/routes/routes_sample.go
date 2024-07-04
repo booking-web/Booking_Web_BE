@@ -13,7 +13,7 @@ type PostData struct {
 
 var postData PostData
 
-func GetController(w http.ResponseWriter, r *http.Request) {
+func GetSample(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
 	}
@@ -23,7 +23,7 @@ func GetController(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(postData)
 }
 
-func PostController(w http.ResponseWriter, r *http.Request) {
+func PostSample(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
 		w.Header().Set("Content-Type", "application/json")
 
