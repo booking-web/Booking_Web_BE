@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"os"
 
@@ -11,9 +10,10 @@ import (
 )
 
 func main() {
-	err := godotenv.Load("../internal/.env")
+	err := godotenv.Load("./internal/.env")
 	if err != nil {
-		log.Fatal("Error loading .env file")
+		// log.Fatal("Error loading .env file")
+		fmt.Println("Error loading .env file")
 	}
 
 	PORT := os.Getenv("PORT")

@@ -11,8 +11,13 @@ COPY ../../go.sum .
 # Download dependencies
 RUN go mod download
 
+COPY .. .
 # Copy the source code from the "cmd" folder to the Docker image
 COPY cmd/main.go .
+
+# Navigate to the internal directory and copy the .env file
+# WORKDIR /app
+RUN mkdir -p internal && cp ./internal/.env .
 
 # Compile the Go application
 RUN CGO_ENABLED=0 GOOS=linux go build -o main .
@@ -20,8 +25,12 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o main .
 # Use a smaller base image for the final stage
 FROM alpine:latest
 
+WORKDIR /app
+
 # Copy the compiled binary from the builder stage
-COPY --from=builder /app/main .
+COPY --from=builder /app/main /app
+
+COPY --from=builder /app/internal/.env /app/internal/
 
 # Specify the entry point for the Docker container
-ENTRYPOINT ["/main"]
+ENTRYPOINT ["/app/main"]
