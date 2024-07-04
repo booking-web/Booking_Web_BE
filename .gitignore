@@ -4,7 +4,7 @@
 /deploy/pgadmin/sessions
 /deploy/pgadmin/pgadmin4.db
 main
-
+/internal/.env
 # Folder Mongodb
 /deploy/mongodb/db
 /deploy/mongodb/mongoconfig
