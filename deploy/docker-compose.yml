@@ -3,19 +3,24 @@ services:
   db:
     image: postgres
     container_name: postgres
-    restart: always
+    # restart: always
     ports:
       - "5432:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: jiohealth
     volumes:
-      - ../deploy/data:/var/lib/postgresql/data
+      - ../deploy/postgresql:/var/lib/postgresql/data
+      # seeding scripts
+      - ../deploy/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - jiohealth
 
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin
-    restart: always
+    # restart: always
     ports:
       - "80:80"
     environment:
@@ -23,7 +28,31 @@ services:
       PGADMIN_DEFAULT_PASSWORD: postgres
     volumes:
       - ../deploy/pgadmin:/var/lib/pgadmin
+    networks:
+      - jiohealth
+
+  # mongodb:
+  #   image: mongo
+  #   container_name: mongodb
+  #   ports:
+  #     - 27017:27017
+  #   environment:
+  #     MONGO_INITDB_DATABASE: test
+  #     MONGO_INITDB_ROOT_USERNAME: admin
+  #     MONGO_INITDB_ROOT_PASSWORD: admin
+  #   volumes:
+  #     # seeding scripts
+  #     - ../deploy/mongodb/mongo-entrypoint:/docker-entrypoint-initdb.d
+  #     # named volumes
+  #     - ../deploy/mongodb/db:/data/db
+  #     - ../deploy/mongodb/mongoconfig:/data/configdb
+  #   networks:
+  #     - jiohealth
 
 volumes:
   local_pgdata:
   pgadmin-data:
+
+networks:
+  jiohealth:
+    driver: bridge

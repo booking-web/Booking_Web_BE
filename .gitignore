@@ -1,8 +1,12 @@
-# folder container
-/deploy/data
+# Folder container
+/deploy/postgresql
 /deploy/pgadmin/azurecredentialcache
 /deploy/pgadmin/sessions
 /deploy/pgadmin/pgadmin4.db
+
+# Folder Mongodb
+/deploy/mongodb/db
+/deploy/mongodb/mongoconfig
 
 # Remove .DS_Store on mac
 .DS_Store
