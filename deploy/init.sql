@@ -9,7 +9,7 @@ CREATE TABLE roles(
 
 CREATE TABLE users(
     user_id     SERIAL          NOT NULL    PRIMARY KEY,
-    user_name   VARCHAR(60)     NOT NULL,
+    email       VARCHAR(60)     NOT NULL,
     full_name   VARCHAR(60)     NOT NULL,
     password    VARCHAR(300)    NOT NULL,
     role_id     INTEGER         NOT NULL,
