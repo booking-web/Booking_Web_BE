@@ -9,6 +9,7 @@
 # Applications
 main
 /internal/.env
+/vendor
 
 # Remove no neccessary file on mac
 #.DS_Store

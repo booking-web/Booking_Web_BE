@@ -1,0 +1,96 @@
+definitions:
+  handlers.Login:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    type: object
+  types.Users:
+    properties:
+      email:
+        type: string
+      fullName:
+        type: string
+      password:
+        type: string
+      roleId:
+        type: integer
+      userId:
+        type: integer
+    type: object
+info:
+  contact: {}
+paths:
+  /api/v1/get-user:
+    get:
+      consumes:
+      - application/json
+      description: Returns user details by Id
+      parameters:
+      - description: User Id
+        in: query
+        name: userId
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.Users'
+      security:
+      - Bearer: []
+      summary: Get user details by Id
+      tags:
+      - Users
+  /api/v1/login:
+    post:
+      consumes:
+      - application/json
+      description: Returns Login Successful
+      parameters:
+      - description: Login
+        in: body
+        name: userLogin
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.Login'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.Users'
+      summary: Login
+      tags:
+      - Users
+  /api/v1/sign-up:
+    post:
+      consumes:
+      - application/json
+      description: Returns  Sign Up Successful
+      parameters:
+      - description: New User
+        in: body
+        name: userId
+        required: true
+        schema:
+          $ref: '#/definitions/types.Users'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.Users'
+      summary: Sign Up Account
+      tags:
+      - Users
+securityDefinitions:
+  Bearer:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
