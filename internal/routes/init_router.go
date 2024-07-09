@@ -5,6 +5,9 @@ import (
 	"os"
 
 	"github.com/billzayy/Booking_Web_BE/api"
+	"github.com/billzayy/Booking_Web_BE/internal/routes/authenticate"
+	"github.com/billzayy/Booking_Web_BE/internal/routes/user"
+
 	httpSwagger "github.com/swaggo/http-swagger/v2"
 )
 
@@ -20,17 +23,7 @@ func NewRouter() http.Handler {
 	mux.Handle("/swagger/", httpSwagger.WrapHandler)
 
 	// Group APIs
-	mux.Handle("/api/sample/", http.StripPrefix("/api/sample", sampleMux()))
 	mux.Handle("/api/v1/", http.StripPrefix("/api/v1", userMux()))
-
-	return mux
-}
-
-func sampleMux() *http.ServeMux {
-	mux := http.NewServeMux()
-
-	mux.HandleFunc("/get-sample", GetSample)
-	mux.HandleFunc("/post-sample", PostSample)
 
 	return mux
 }
@@ -38,9 +31,9 @@ func sampleMux() *http.ServeMux {
 func userMux() *http.ServeMux {
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("/get-user", GetUserByIdRoute)
-	mux.HandleFunc("/sign-up", SignUpRoute)
-	mux.HandleFunc("/login", LogInRoute)
+	mux.HandleFunc("/get-user", user.GetUserByIdRoute)
+	mux.HandleFunc("/sign-up", authenticate.SignUpRoute)
+	mux.HandleFunc("/login", authenticate.LogInRoute)
 
 	return mux
 }

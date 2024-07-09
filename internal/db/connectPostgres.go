@@ -19,16 +19,16 @@ func ConnectPostgres() (*sql.DB, error) {
 
 	db, err := sql.Open("postgres", DB_Path)
 	if err != nil {
-		panic(err)
+		return db, err
 	}
 
-	err = db.Ping()
+	// err = db.Ping()
 
-	if err != nil {
-		panic(err)
-	}
+	// if err != nil {
+	// 	panic(err)
+	// }
 
 	// fmt.Println("Postgresql Connected!")
 
-	return db, err
+	return db, nil
 }

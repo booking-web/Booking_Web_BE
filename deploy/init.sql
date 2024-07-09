@@ -88,3 +88,7 @@ CREATE TABLE payment(
     file_url        VARCHAR(300)    NULL,
     FOREIGN KEY (surgery_id) REFERENCES surgery_info(surgery_id)
 );
+
+INSERT INTO roles(role_name) VALUES ('User'), ('Admin'),('Doctor');
+
+INSERT INTO language(language_name) VALUES ('Vietnamese') , ('English');

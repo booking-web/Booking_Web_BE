@@ -17,6 +17,6 @@ func VerifyToken(tokenString string) (*jwt.Token, error) {
 	if _, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
 		return token, nil
 	} else {
-		panic(err)
+		return token, err
 	}
 }
