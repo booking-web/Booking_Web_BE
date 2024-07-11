@@ -56,6 +56,38 @@ const docTemplate = `{
                 }
             }
         },
+        "/api/v1/forgot-password": {
+            "get": {
+                "description": "Returns Sent to Your Email Successful",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Forgot Password",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "userId",
+                        "name": "userId",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.ResponseDataType"
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/get-user": {
             "get": {
                 "security": [
@@ -165,10 +197,10 @@ const docTemplate = `{
         "handlers.ForgotPass": {
             "type": "object",
             "properties": {
-                "newPassword": {
+                "confirmPassword": {
                     "type": "string"
                 },
-                "oldPassword": {
+                "newPassword": {
                     "type": "string"
                 }
             }

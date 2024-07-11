@@ -9,6 +9,14 @@ import (
 	"github.com/billzayy/Booking_Web_BE/internal/pkg/email"
 )
 
+// @Summary Forgot Password
+// @Description Returns Sent to Your Email Successful
+// @Tags Users
+// @Accept  json
+// @Produce  json
+// @Param userId query int true "userId"
+// @Success 200 {object} handlers.ResponseDataType
+// @Router /api/v1/forgot-password [get]
 func ForgotPassRoute(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 

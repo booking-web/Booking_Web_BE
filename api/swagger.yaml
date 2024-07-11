@@ -1,9 +1,9 @@
 definitions:
   handlers.ForgotPass:
     properties:
-      newPassword:
+      confirmPassword:
         type: string
-      oldPassword:
+      newPassword:
         type: string
     type: object
   handlers.Login:
@@ -69,6 +69,27 @@ paths:
           schema:
             $ref: '#/definitions/handlers.ResponseDataType'
       summary: Change Password
+      tags:
+      - Users
+  /api/v1/forgot-password:
+    get:
+      consumes:
+      - application/json
+      description: Returns Sent to Your Email Successful
+      parameters:
+      - description: userId
+        in: query
+        name: userId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.ResponseDataType'
+      summary: Forgot Password
       tags:
       - Users
   /api/v1/get-user:
