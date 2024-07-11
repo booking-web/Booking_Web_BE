@@ -44,7 +44,7 @@ func LoginDb(input handlers.Login) (types.ResponseLogin, error) {
 		checkPass, err := pkg.ValidatePassword(input.Password, []byte(password))
 
 		if err != nil {
-			return types.ResponseLogin{}, fmt.Errorf("password error")
+			return types.ResponseLogin{}, fmt.Errorf("password is incorrect")
 		}
 
 		if checkPass {

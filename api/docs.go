@@ -15,6 +15,47 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/api/v1/change-password": {
+            "post": {
+                "description": "Returns Change Password Successful",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Change Password",
+                "parameters": [
+                    {
+                        "description": "Login",
+                        "name": "userLogin",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/handlers.ForgotPass"
+                        }
+                    },
+                    {
+                        "type": "integer",
+                        "description": "userId",
+                        "name": "userId",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.ResponseDataType"
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/get-user": {
             "get": {
                 "security": [
@@ -79,7 +120,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.Users"
+                            "$ref": "#/definitions/types.ResponseLogin"
                         }
                     }
                 }
@@ -113,7 +154,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.Users"
+                            "$ref": "#/definitions/handlers.ResponseDataType"
                         }
                     }
                 }
@@ -121,6 +162,17 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "handlers.ForgotPass": {
+            "type": "object",
+            "properties": {
+                "newPassword": {
+                    "type": "string"
+                },
+                "oldPassword": {
+                    "type": "string"
+                }
+            }
+        },
         "handlers.Login": {
             "type": "object",
             "properties": {
@@ -129,6 +181,29 @@ const docTemplate = `{
                 },
                 "password": {
                     "type": "string"
+                }
+            }
+        },
+        "handlers.ResponseDataType": {
+            "type": "object",
+            "properties": {
+                "data": {},
+                "message": {
+                    "type": "string"
+                },
+                "statusCode": {
+                    "type": "integer"
+                }
+            }
+        },
+        "types.ResponseLogin": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "integer"
                 }
             }
         },

@@ -15,7 +15,7 @@ import (
 // @Accept  json
 // @Produce  json
 // @Param userLogin body handlers.Login true "Login"
-// @Success 200 {object} types.Users
+// @Success 200 {object} types.ResponseLogin
 // @Router /api/v1/login [post]
 func LogInRoute(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")

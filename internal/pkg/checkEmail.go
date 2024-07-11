@@ -16,6 +16,8 @@ func CheckExistedEmail(db *sql.DB, email string) (bool, error) {
 		return false, err
 	}
 
+	defer db.Close()
+
 	var checkEmail bool
 	for rows.Next() {
 		var list types.Users

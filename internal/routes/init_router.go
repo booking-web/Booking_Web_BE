@@ -31,6 +31,7 @@ func NewRouter() http.Handler {
 func userMux() *http.ServeMux {
 	mux := http.NewServeMux()
 
+	mux.HandleFunc("/change-password", authenticate.ChangePassRoute)
 	mux.HandleFunc("/get-user", user.GetUserByIdRoute)
 	mux.HandleFunc("/sign-up", authenticate.SignUpRoute)
 	mux.HandleFunc("/login", authenticate.LogInRoute)

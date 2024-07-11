@@ -1,10 +1,32 @@
 definitions:
+  handlers.ForgotPass:
+    properties:
+      newPassword:
+        type: string
+      oldPassword:
+        type: string
+    type: object
   handlers.Login:
     properties:
       email:
         type: string
       password:
         type: string
+    type: object
+  handlers.ResponseDataType:
+    properties:
+      data: {}
+      message:
+        type: string
+      statusCode:
+        type: integer
+    type: object
+  types.ResponseLogin:
+    properties:
+      token:
+        type: string
+      userId:
+        type: integer
     type: object
   types.Users:
     properties:
@@ -22,6 +44,33 @@ definitions:
 info:
   contact: {}
 paths:
+  /api/v1/change-password:
+    post:
+      consumes:
+      - application/json
+      description: Returns Change Password Successful
+      parameters:
+      - description: Login
+        in: body
+        name: userLogin
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.ForgotPass'
+      - description: userId
+        in: query
+        name: userId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.ResponseDataType'
+      summary: Change Password
+      tags:
+      - Users
   /api/v1/get-user:
     get:
       consumes:
@@ -62,7 +111,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/types.Users'
+            $ref: '#/definitions/types.ResponseLogin'
       summary: Login
       tags:
       - Users
@@ -84,7 +133,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/types.Users'
+            $ref: '#/definitions/handlers.ResponseDataType'
       summary: Sign Up Account
       tags:
       - Users

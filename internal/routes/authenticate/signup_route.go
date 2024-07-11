@@ -16,7 +16,7 @@ import (
 // @Accept  json
 // @Produce  json
 // @Param userId body types.Users true "New User"
-// @Success 200 {object} types.Users
+// @Success 200 {object} handlers.ResponseDataType
 // @Router /api/v1/sign-up [post]
 func SignUpRoute(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
