@@ -19,6 +19,9 @@ COPY cmd/main.go .
 # WORKDIR /app
 RUN mkdir -p internal && cp ./internal/.env .
 
+# WORKDIR /app
+RUN mkdir -p templates && cp ./templates/responseEmail.html .
+
 # Compile the Go application
 RUN CGO_ENABLED=0 GOOS=linux go build -o main .
 
@@ -31,6 +34,8 @@ WORKDIR /app
 COPY --from=builder /app/main /app
 
 COPY --from=builder /app/internal/.env /app/internal/
+
+COPY --from=builder /app/templates/responseEmail.html /app/templates/
 
 # Specify the entry point for the Docker container
 ENTRYPOINT ["/app/main"]

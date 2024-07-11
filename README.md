@@ -14,12 +14,12 @@ To run this project, you just need to use this command on your terminal:
 docker-compose -f ./deploy/docker-compose.yml up -d
 ```
 
-***<span style="color:red;">P/S</span>*** : Before run this project, you need to contact with author or create a `.env` file inside `/internal` with this template :
+<!-- ***<span style="color:red;">P/S</span>*** : Before run this project, you need to contact with author or create a `.env` file inside `/internal` with this template : -->
 
-```properties
+<!-- ```properties
 PORT=<port-number>
 DB_PATH="postgresql://<username>:<password>@<ip>:<port>/<database-name>?sslmode=disable"
-```
+``` -->
 
 ## Go Structure
 ### `/api`
