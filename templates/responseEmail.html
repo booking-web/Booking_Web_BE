@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password</title>
+</head>
+
+<style>
+    body {
+        margin: 0 10%;
+        height: 100vh;
+        padding: 0;
+        display:flex;
+        justify-self: center;
+        align-items: start;
+        font-family:'Times New Roman', Times, serif;
+    }
+    .email{
+        justify-self: center;
+        margin: 10% 0;
+        padding-left:  5%;
+    }
+
+    div {
+        margin: 30px 0;
+        font-size: 20px;
+    }
+
+    a{
+        margin:0;
+    }
+    p{
+        margin:0;
+    }
+
+    .footer {
+        /* display: none; */
+        color: gray;
+    }
+</style>
+
+<body>
+    <div class="email">
+        <img src="https://github.com/booking-web/Booking_Web_BE/blob/main/templates/logo_header.png" alt="Logo" class="logo">
+        
+        <div class="content">
+            <div class="forgot-pass-content">
+                <p>Someone (hopefully you) has requested a password reset for your JioHealth account. Follow the link below to set a new
+                    password:
+                    <p style="margin: 30px"></p>
+                    <a href="{{.Link}}">{{.Link}}</a>
+            </div>
+        
+            <p>If you don't wish to reset your password, disregard this email and no action will be taken.</p>
+        
+            <div class="main-page">
+                <p>The JioHealth Team</p>
+                <p style="margin:10px"></p>
+                <a href="{{.MainPage}}">{{.MainPage}}</a>
+            </div>
+        </div>
+
+        <hr>
+        <div class="footer">
+            <p>Heroku is the cloud platform for rapid deployment and scaling of web applications. Get up and running in minutes, then
+            deploy instantly via Git.</p>
+            
+            <div class="check-out">
+                <p>To learn more about Heroku and all its features, check out the Dev Center:</p>
+                <a href="https://devcenter.heroku.com/articles/quickstart" style="color: black;">https://devcenter.heroku.com/articles/quickstart</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

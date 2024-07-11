@@ -13,13 +13,13 @@ func SignUp(input types.Users) (int, error) {
 		return 0, err
 	}
 
-	defer db.Close()
-
 	checkEmail, err := pkg.CheckExistedEmail(db, input.Email)
 
 	if err != nil {
 		return 0, err
 	}
+
+	defer db.Close()
 
 	if !checkEmail {
 		hashedPassword, err := pkg.HashPassword(input.Password)
@@ -40,6 +40,6 @@ func SignUp(input types.Users) (int, error) {
 
 		return 1, nil
 	} else {
-		return -1, nil
+		return -1, err
 	}
 }
