@@ -8,7 +8,7 @@ import (
 	"github.com/billzayy/Booking_Web_BE/internal/pkg"
 	"github.com/billzayy/Booking_Web_BE/internal/types"
 
-	jwtauthen "github.com/billzayy/Booking_Web_BE/internal/pkg/jwtAuthen"
+	middleware "github.com/billzayy/Booking_Web_BE/internal/pkg/middleware"
 )
 
 func LoginDb(input handlers.Login) (types.ResponseLogin, error) {
@@ -56,7 +56,7 @@ func LoginDb(input handlers.Login) (types.ResponseLogin, error) {
 		return login, fmt.Errorf("email or password is not found")
 	}
 
-	result, err := jwtauthen.GenerateToken(string(login.UserId))
+	result, err := middleware.GenerateToken(string(login.UserId))
 
 	if err != nil {
 		return types.ResponseLogin{}, fmt.Errorf("error gen token")

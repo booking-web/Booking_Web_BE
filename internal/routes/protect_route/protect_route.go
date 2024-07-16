@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	jwtauthen "github.com/billzayy/Booking_Web_BE/internal/pkg/jwtAuthen"
+	middleware "github.com/billzayy/Booking_Web_BE/internal/pkg/middleware"
 )
 
 func ProtectedRoute(w http.ResponseWriter, r *http.Request) (bool, error) {
@@ -18,7 +18,7 @@ func ProtectedRoute(w http.ResponseWriter, r *http.Request) (bool, error) {
 
 	tokenString = tokenString[len("Bearer "):]
 
-	_, err := jwtauthen.VerifyToken(tokenString)
+	_, err := middleware.VerifyToken(tokenString)
 
 	if err != nil {
 		return false, fmt.Errorf("invalid token")
