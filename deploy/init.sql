@@ -46,6 +46,7 @@ CREATE TABLE work_location(
 
 CREATE TABLE doctor_profile(
     doctor_id       SERIAL          NOT NULL    PRIMARY KEY,
+    doctor_name     VARCHAR(500)    NOT NULL,
     docker_summary  VARCHAR(500)    NULL,
     exp_year        INTEGER         NOT NULL,
     clinic_id       INTEGER         NOT NULL,

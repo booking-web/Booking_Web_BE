@@ -21,6 +21,31 @@ definitions:
       statusCode:
         type: integer
     type: object
+  types.ResponseDoctor:
+    properties:
+      clinicName:
+        type: string
+      degree:
+        type: string
+      description:
+        type: string
+      doctorName:
+        type: string
+      doctorSum:
+        type: string
+      eduLocation:
+        type: string
+      expYear:
+        type: integer
+      language:
+        items:
+          type: string
+        type: array
+      workLocation:
+        items:
+          type: string
+        type: array
+    type: object
   types.ResponseLogin:
     properties:
       token:
@@ -71,6 +96,26 @@ paths:
       summary: Change Password
       tags:
       - Users
+  /api/v1/doctor/list:
+    get:
+      consumes:
+      - application/json
+      description: Returns List of Doctors
+      parameters:
+      - description: Doctor Id
+        in: query
+        name: doctorName
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.ResponseDoctor'
+      summary: Get Doctors List
+      tags:
+      - Doctors
   /api/v1/forgot-password:
     get:
       consumes:

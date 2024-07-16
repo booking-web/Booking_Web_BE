@@ -6,6 +6,7 @@ import (
 
 	"github.com/billzayy/Booking_Web_BE/api"
 	"github.com/billzayy/Booking_Web_BE/internal/routes/authenticate"
+	"github.com/billzayy/Booking_Web_BE/internal/routes/doctor"
 	"github.com/billzayy/Booking_Web_BE/internal/routes/user"
 
 	httpSwagger "github.com/swaggo/http-swagger/v2"
@@ -24,6 +25,7 @@ func NewRouter() http.Handler {
 
 	// Group APIs
 	mux.Handle("/api/v1/", http.StripPrefix("/api/v1", userMux()))
+	mux.Handle("/api/v1/doctor/", http.StripPrefix("/api/v1/doctor", doctorMux()))
 
 	return mux
 }
@@ -36,6 +38,14 @@ func userMux() *http.ServeMux {
 	mux.HandleFunc("/get-user", user.GetUserByIdRoute)
 	mux.HandleFunc("/sign-up", authenticate.SignUpRoute)
 	mux.HandleFunc("/login", authenticate.LogInRoute)
+
+	return mux
+}
+
+func doctorMux() *http.ServeMux {
+	mux := http.NewServeMux()
+
+	mux.HandleFunc("/list", doctor.GetListRoute)
 
 	return mux
 }

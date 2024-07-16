@@ -56,6 +56,37 @@ const docTemplate = `{
                 }
             }
         },
+        "/api/v1/doctor/list": {
+            "get": {
+                "description": "Returns List of Doctors",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Doctors"
+                ],
+                "summary": "Get Doctors List",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Doctor Id",
+                        "name": "doctorName",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/types.ResponseDoctor"
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/forgot-password": {
             "get": {
                 "description": "Returns Sent to Your Email Successful",
@@ -225,6 +256,44 @@ const docTemplate = `{
                 },
                 "statusCode": {
                     "type": "integer"
+                }
+            }
+        },
+        "types.ResponseDoctor": {
+            "type": "object",
+            "properties": {
+                "clinicName": {
+                    "type": "string"
+                },
+                "degree": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "doctorName": {
+                    "type": "string"
+                },
+                "doctorSum": {
+                    "type": "string"
+                },
+                "eduLocation": {
+                    "type": "string"
+                },
+                "expYear": {
+                    "type": "integer"
+                },
+                "language": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "workLocation": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 }
             }
         },
