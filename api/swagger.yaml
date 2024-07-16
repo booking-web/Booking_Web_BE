@@ -77,11 +77,11 @@ paths:
       - application/json
       description: Returns Sent to Your Email Successful
       parameters:
-      - description: userId
+      - description: email
         in: query
-        name: userId
+        name: email
         required: true
-        type: integer
+        type: string
       produces:
       - application/json
       responses:

@@ -71,9 +71,9 @@ const docTemplate = `{
                 "summary": "Forgot Password",
                 "parameters": [
                     {
-                        "type": "integer",
-                        "description": "userId",
-                        "name": "userId",
+                        "type": "string",
+                        "description": "email",
+                        "name": "email",
                         "in": "query",
                         "required": true
                     }
