@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/billzayy/Booking_Web_BE/internal/db/userdb"
 	"github.com/billzayy/Booking_Web_BE/internal/handlers"
+	"github.com/billzayy/Booking_Web_BE/internal/pkg"
 	"github.com/billzayy/Booking_Web_BE/internal/pkg/email"
 )
 
@@ -14,7 +14,7 @@ import (
 // @Tags Users
 // @Accept  json
 // @Produce  json
-// @Param userId query int true "userId"
+// @Param email query string true "email"
 // @Success 200 {object} handlers.ResponseDataType
 // @Router /api/v1/forgot-password [get]
 func ForgotPassRoute(w http.ResponseWriter, r *http.Request) {
@@ -25,20 +25,20 @@ func ForgotPassRoute(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	userId := r.URL.Query().Get("userId")
+	userMail := r.URL.Query().Get("email")
 
-	data, err := userdb.GetUserById(userId)
+	data, err := pkg.CheckExistedEmail(userMail)
 
 	if err != nil {
 		handlers.ResponseData(w, http.StatusNotFound, err.Error())
 		return
 	}
 
-	if len(data) == 0 {
-		handlers.ResponseData(w, http.StatusNotFound, fmt.Sprintf("User %v not found!", userId))
+	if !data {
+		handlers.ResponseData(w, http.StatusNotFound, fmt.Sprintf("User %v not found!", userMail))
 		return
 	} else {
-		email.SendMail(data[0].Email)
+		email.SendMail(userMail)
 		handlers.ResponseData(w, http.StatusOK, "Sent to your email !")
 		return
 	}

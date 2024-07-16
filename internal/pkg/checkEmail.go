@@ -1,13 +1,20 @@
 package pkg
 
 import (
-	"database/sql"
 	"fmt"
 
+	"github.com/billzayy/Booking_Web_BE/internal/db"
 	"github.com/billzayy/Booking_Web_BE/internal/types"
 )
 
-func CheckExistedEmail(db *sql.DB, email string) (bool, error) {
+func CheckExistedEmail(email string) (bool, error) {
+	db, err := db.ConnectPostgres()
+
+	if err != nil {
+		return false, err
+	}
+	defer db.Close()
+
 	checkQuery := fmt.Sprintf("SELECT * FROM users WHERE email = '%s'", email)
 
 	rows, err := db.Query(checkQuery)

@@ -13,7 +13,7 @@ func SignUp(input types.Users) (int, error) {
 		return 0, err
 	}
 
-	checkEmail, err := pkg.CheckExistedEmail(db, input.Email)
+	checkEmail, err := pkg.CheckExistedEmail(input.Email)
 
 	if err != nil {
 		return 0, err
