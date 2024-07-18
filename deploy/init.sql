@@ -22,7 +22,7 @@ CREATE TABLE user_attachment(
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
-CREATE TABLE insurance_info(
+CREATE TABLE insurance(
     insurance_id    SERIAL          NOT NULL    PRIMARY KEY,
     insurance_name  VARCHAR(50)     NOT NULL,
     file_url        VARCHAR(300)    NULL
@@ -44,20 +44,26 @@ CREATE TABLE work_location(
     work_location_name  VARCHAR(50)     NOT NULL
 );
 
-CREATE TABLE doctor_profile(
+CREATE TABLE doctor (
     doctor_id       SERIAL          NOT NULL    PRIMARY KEY,
     doctor_name     VARCHAR(500)    NOT NULL,
-    docker_summary  VARCHAR(500)    NULL,
+    doctor_summary  VARCHAR(500)    NULL,
     exp_year        INTEGER         NOT NULL,
-    clinic_id       INTEGER         NOT NULL,
     edu_location    VARCHAR(500)    NOT NULL,
     degree          VARCHAR(500)    NOT NULL,
-    work_location   INTEGER         NULL,
-    language        INTEGER         NULL,
     description     VARCHAR(500)    NULL,
-    FOREIGN KEY (clinic_id) REFERENCES clinic(clinic_id),
-    FOREIGN KEY (language) REFERENCES language(language_id),
-    FOREIGN KEY (work_location) REFERENCES work_location(work_location_id)
+    file_url        VARCHAR(500)    NULL,
+    clinic_id       INTEGER         NOT NULL,
+    FOREIGN KEY (clinic_id) REFERENCES clinic(clinic_id)
+);
+
+CREATE TABLE doctor_profile(
+    doctor_id       SERIAL          NOT NULL,
+    work_location   INTEGER         NOT NULL,
+    language        INTEGER         NOT NULL,
+    FOREIGN KEY (doctor_id) REFERENCES doctor(doctor_id),
+    FOREIGN KEY (work_location) REFERENCES work_location(work_location_id),
+    FOREIGN KEY (language) REFERENCES language(language_id)
 );
 
 CREATE TABLE rating(
@@ -65,31 +71,52 @@ CREATE TABLE rating(
     star            INTEGER         NULL,
     description     VARCHAR(500)    NULL,
     doctor_id       INTEGER         NOT NULL,
-    FOREIGN KEY (doctor_id) REFERENCES doctor_profile(doctor_id)
+    FOREIGN KEY (doctor_id) REFERENCES doctor(doctor_id)
 );
 
-CREATE TABLE surgery_info(
+CREATE TABLE surgery(
     surgery_id      SERIAL          NOT NULL    PRIMARY KEY,
     surgery_name    VARCHAR(50)     NOT NULL,
     surgery_addr    VARCHAR(50)     NOT NULL,
     surgery_time    VARCHAR(50)     NOT NULL,
-    doctor          INTEGER         NOT NULL,
     insurance       INTEGER         NOT NULL,
-    FOREIGN KEY (doctor) REFERENCES doctor_profile(doctor_id),
-    FOREIGN KEY (insurance) REFERENCES insurance_info(insurance_id)
+    FOREIGN KEY (insurance) REFERENCES insurance(insurance_id)
 );
+
 CREATE TABLE surgery_attachment(
     surgery_id      INTEGER         NOT NULL,
     file_url        VARCHAR(300)    NULL,
-    FOREIGN KEY (surgery_id) REFERENCES surgery_info(surgery_id)
+    FOREIGN KEY (surgery_id) REFERENCES surgery(surgery_id)
 );
-CREATE TABLE payment(
+
+CREATE TABLE surgery_doctor(
+    doctor_id       INTEGER         NOT NULL,
     surgery_id      INTEGER         NOT NULL,
+    FOREIGN KEY (doctor_id) REFERENCES doctor(doctor_id)
+);
+
+CREATE TABLE payment(
+    payment_id      SERIAL          NOT NULL    PRIMARY KEY,
     payment_name    VARCHAR(50)     NOT NULL,
-    file_url        VARCHAR(300)    NULL,
-    FOREIGN KEY (surgery_id) REFERENCES surgery_info(surgery_id)
+    file_url        VARCHAR(300)    NULL
+);
+
+CREATE TABLE surgery_payment(
+    surgery_id      INTEGER         NOT NULL,
+    payment_id      INTEGER         NOT NULL,
+    FOREIGN KEY (surgery_id) REFERENCES surgery(surgery_id),
+    FOREIGN KEY(payment_id) REFERENCES payment(payment_id)
+);
+
+CREATE TABLE insurance_surgery(
+    surgery_id      INTEGER         NOT NULL,
+    insurance_id    INTEGER         NOT NULL,
+    FOREIGN KEY (surgery_id) REFERENCES surgery(surgery_id),
+    FOREIGN KEY (insurance_id) REFERENCES insurance(insurance_id)
 );
 
 INSERT INTO roles(role_name) VALUES ('User'), ('Admin'),('Doctor');
 
 INSERT INTO language(language_name) VALUES ('Vietnamese') , ('English');
+
+INSERT INTO clinic(clinic_name, clinic_image) VALUES ('Nhi Khoa', ''), ('Đa khoa', ''); 
