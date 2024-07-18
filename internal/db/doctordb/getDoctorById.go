@@ -9,27 +9,35 @@ import (
 	"github.com/billzayy/Booking_Web_BE/internal/types"
 )
 
-func GetDoctorByName(doctorName string) (types.ResponseDoctor, error) {
+func GetDoctorById(doctorId int) (types.ResponseDoctor, error) {
 	db, err := db.ConnectPostgres()
 
 	if err != nil {
 		return types.ResponseDoctor{}, err
 	}
 
-	if doctorName == "" {
-		return types.ResponseDoctor{}, errors.New("doctor name is empty")
+	if doctorId == 0 {
+		return types.ResponseDoctor{}, errors.New("doctor id is empty")
 	}
 
 	defer db.Close()
 
 	query := fmt.Sprintf("SELECT "+
-		"d.doctor_name, d.doctor_summary, d.exp_year, cl.clinic_name, d.edu_location, d.degree, "+
-		"w.work_location_name, l.language_name, d.description "+
-		"FROM doctor_profile d "+
-		"LEFT JOIN work_location w ON w.work_location_id = d.work_location "+
-		"LEFT JOIN language l ON l.language_id = d.language "+
+		"d.doctor_name, "+
+		"d.doctor_summary, "+
+		"d.exp_year, "+
+		"cl.clinic_name, "+
+		"d.edu_location, "+
+		"d.degree, "+
+		"w.work_location_name,  "+
+		"l.language_name, "+
+		"d.description "+
+		"FROM doctor d "+
+		"LEFT JOIN doctor_profile dp ON dp.doctor_id = d.doctor_id "+
+		"LEFT JOIN work_location w ON w.work_location_id = dp.work_location "+
+		"LEFT JOIN language l ON l.language_id = dp.language "+
 		"LEFT JOIN clinic cl ON cl.clinic_id = d.clinic_id "+
-		"WHERE d.doctor_name = '%s'", doctorName)
+		"WHERE d.doctor_id = %v", doctorId)
 
 	rows, err := db.Query(query)
 

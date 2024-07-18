@@ -7,11 +7,17 @@ INSERT INTO work_location(work_location_name) VALUES ('Bệnh viện Nhi Đồng
 
 SELECT * FROM doctor_profile;
 
-INSERT INTO doctor_profile(doctor_name, doctor_summary, exp_year, clinic_id, edu_location, degree, work_location, language, description) VALUES
-('Bill','Test Doctor', 11, 1, 'Đại học Y dược thành phố Hồ Chí Minh', 'Thạc sĩ Y Khoa', 1, 1, 'Test Doctor'),
-('Bill','Test Doctor', 11, 1, 'Đại học Y dược thành phố Hồ Chí Minh', 'Thạc sĩ Y Khoa', 2, 2, 'Test Doctor');
+INSERT INTO doctor(doctor_name, doctor_summary, exp_year, edu_location, degree, description, file_url, clinic_id) VALUES
+('Bill','Test Doctor', 11, 'Đại học Y dược thành phố Hồ Chí Minh', 'Thạc sĩ Y Khoa', '', '',1)
 
+INSERT INTO doctor_profile VALUES (2,1,1), (2,1,2)
+
+INSERT INTO work_location(work_location_name) VALUES ('Đại học Y Dược Thành phố Hồ Chí Minh')
+	
 SELECT * FROM doctor_profile;
+SELECT * FROM doctor;
+SELECT * FROM clinic;
+SELECT * FROM work_location
 
 SELECT d.doctor_name,
 	d.doctor_summary,
@@ -19,16 +25,11 @@ SELECT d.doctor_name,
 	cl.clinic_name,
 	d.edu_location,
 	d.degree,
-	array_agg(w.work_location_name ORDER BY w.work_location_id) AS work_location, 
-	array_agg(language_name ORDER BY language_id),
+	w.work_location_name, 
+	l.language_name,
 	d.description
-FROM doctor_profile d
-LEFT JOIN work_location w ON w.work_location_id = d.work_location
-LEFT JOIN language l ON l.language_id = d.language
+FROM doctor d
+LEFT JOIN doctor_profile dp ON dp.doctor_id = d.doctor_id
+LEFT JOIN work_location w ON w.work_location_id = dp.work_location
+LEFT JOIN language l ON l.language_id = dp.language
 LEFT JOIN clinic cl ON cl.clinic_id = d.clinic_id
-GROUP BY d.doctor_name,
-	d.doctor_summary,
-	d.exp_year,
-	cl.clinic_name,
-	d.edu_location,
-	d.degree,d.description;

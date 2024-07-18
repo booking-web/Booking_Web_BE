@@ -2,6 +2,7 @@ package doctor
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/billzayy/Booking_Web_BE/internal/db/doctordb"
 	"github.com/billzayy/Booking_Web_BE/internal/handlers"
@@ -23,9 +24,16 @@ func GetListRoute(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	doctorName := r.URL.Query().Get("doctorName")
+	doctorId := r.URL.Query().Get("doctorId")
 
-	data, err := doctordb.GetDoctorByName(doctorName)
+	input, err := strconv.Atoi(doctorId)
+
+	if err != nil {
+		handlers.ResponseData(w, http.StatusBadRequest, err.Error())
+		return
+	}
+
+	data, err := doctordb.GetDoctorById(input)
 
 	if err != nil {
 		handlers.ResponseData(w, http.StatusBadRequest, err.Error())
