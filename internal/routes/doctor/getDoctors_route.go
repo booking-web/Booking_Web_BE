@@ -15,8 +15,8 @@ import (
 // @Produce  json
 // @Param name query string false "Doctor Name"
 // @Success 200 {object} types.ResponseDoctor
-// @Router /api/v1/doctor/list [get]
-func GetListRoute(w http.ResponseWriter, r *http.Request) {
+// @Router /api/v1/doctor/detail [get]
+func GetDoctorRoute(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
 	if r.Method != http.MethodGet {

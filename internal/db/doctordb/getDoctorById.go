@@ -23,6 +23,7 @@ func GetDoctorById(doctorId int) (types.ResponseDoctor, error) {
 	defer db.Close()
 
 	query := fmt.Sprintf("SELECT "+
+		"d.doctor_id, "+
 		"d.doctor_name, "+
 		"d.doctor_summary, "+
 		"d.exp_year, "+
@@ -42,7 +43,6 @@ func GetDoctorById(doctorId int) (types.ResponseDoctor, error) {
 	rows, err := db.Query(query)
 
 	if err != nil {
-		fmt.Println("Hello")
 		return types.ResponseDoctor{}, err
 	}
 
@@ -52,6 +52,7 @@ func GetDoctorById(doctorId int) (types.ResponseDoctor, error) {
 		var list types.Doctor
 
 		err := rows.Scan(
+			&list.DoctorId,
 			&list.DoctorName,
 			&list.DoctorSum,
 			&list.ExpYear,

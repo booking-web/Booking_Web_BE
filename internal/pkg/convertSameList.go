@@ -24,6 +24,7 @@ func ConvertSameDoctor(doctorList []types.Doctor) ([]types.ResponseDoctor, error
 	}
 
 	test := types.ResponseDoctor{
+		DoctorId:     sameList.DoctorId,
 		DoctorName:   sameList.DoctorName,
 		DoctorSum:    sameList.DoctorSum,
 		ExpYear:      sameList.ExpYear,
