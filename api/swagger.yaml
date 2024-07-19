@@ -29,6 +29,8 @@ definitions:
         type: string
       description:
         type: string
+      doctorId:
+        type: integer
       doctorName:
         type: string
       doctorSum:
@@ -96,15 +98,15 @@ paths:
       summary: Change Password
       tags:
       - Users
-  /api/v1/doctor/list:
+  /api/v1/doctor/detail:
     get:
       consumes:
       - application/json
       description: Returns List of Doctors
       parameters:
-      - description: Doctor Id
+      - description: Doctor Name
         in: query
-        name: doctorName
+        name: name
         type: string
       produces:
       - application/json

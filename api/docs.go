@@ -56,7 +56,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/api/v1/doctor/list": {
+        "/api/v1/doctor/detail": {
             "get": {
                 "description": "Returns List of Doctors",
                 "consumes": [
@@ -72,8 +72,8 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Doctor Id",
-                        "name": "doctorName",
+                        "description": "Doctor Name",
+                        "name": "name",
                         "in": "query"
                     }
                 ],
@@ -270,6 +270,9 @@ const docTemplate = `{
                 },
                 "description": {
                     "type": "string"
+                },
+                "doctorId": {
+                    "type": "integer"
                 },
                 "doctorName": {
                     "type": "string"
