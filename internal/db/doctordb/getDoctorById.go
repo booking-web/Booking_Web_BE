@@ -9,15 +9,15 @@ import (
 	"github.com/billzayy/Booking_Web_BE/internal/types"
 )
 
-func GetDoctorById(doctorId int) (types.ResponseDoctor, error) {
+func GetDoctorById(doctorId int) (types.HandlerDoctor, error) {
 	db, err := db.ConnectPostgres()
 
 	if err != nil {
-		return types.ResponseDoctor{}, err
+		return types.HandlerDoctor{}, err
 	}
 
 	if doctorId == 0 {
-		return types.ResponseDoctor{}, errors.New("doctor id is empty")
+		return types.HandlerDoctor{}, errors.New("doctor id is empty")
 	}
 
 	defer db.Close()
@@ -27,7 +27,6 @@ func GetDoctorById(doctorId int) (types.ResponseDoctor, error) {
 		"d.doctor_name, "+
 		"d.doctor_summary, "+
 		"d.exp_year, "+
-		"cl.clinic_name, "+
 		"d.edu_location, "+
 		"d.degree, "+
 		"w.work_location_name,  "+
@@ -37,13 +36,12 @@ func GetDoctorById(doctorId int) (types.ResponseDoctor, error) {
 		"LEFT JOIN doctor_profile dp ON dp.doctor_id = d.doctor_id "+
 		"LEFT JOIN work_location w ON w.work_location_id = dp.work_location "+
 		"LEFT JOIN language l ON l.language_id = dp.language "+
-		"LEFT JOIN clinic cl ON cl.clinic_id = d.clinic_id "+
 		"WHERE d.doctor_id = %v", doctorId)
 
 	rows, err := db.Query(query)
 
 	if err != nil {
-		return types.ResponseDoctor{}, err
+		return types.HandlerDoctor{}, err
 	}
 
 	doctorList := []types.Doctor{}
@@ -56,7 +54,6 @@ func GetDoctorById(doctorId int) (types.ResponseDoctor, error) {
 			&list.DoctorName,
 			&list.DoctorSum,
 			&list.ExpYear,
-			&list.ClinicName,
 			&list.EduLocation,
 			&list.Degree,
 			&list.WorkLocation,
@@ -65,21 +62,21 @@ func GetDoctorById(doctorId int) (types.ResponseDoctor, error) {
 		)
 
 		if err != nil {
-			return types.ResponseDoctor{}, errors.New("not found")
+			return types.HandlerDoctor{}, errors.New("not found")
 		}
 
 		doctorList = append(doctorList, list)
 	}
 	defer rows.Close()
 
-	result, err := pkg.ConvertSameDoctor(doctorList)
+	result, err := pkg.ConvertSameDoctor(doctorList, db)
 
 	if err != nil {
-		return types.ResponseDoctor{}, err
+		return types.HandlerDoctor{}, err
 	}
 
 	if len(result) == 0 {
-		return types.ResponseDoctor{}, errors.New("empty")
+		return types.HandlerDoctor{}, errors.New("empty")
 	} else {
 		return result[0], nil
 	}

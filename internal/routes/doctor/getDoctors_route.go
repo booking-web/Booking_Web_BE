@@ -8,13 +8,13 @@ import (
 	"github.com/billzayy/Booking_Web_BE/internal/handlers"
 )
 
-// @Summary Get Doctors List
-// @Description Returns List of Doctors
+// @Summary Get Detail Information
+// @Description Return Detail Information of Doctors
 // @Tags Doctors
 // @Accept  json
 // @Produce  json
-// @Param name query string false "Doctor Name"
-// @Success 200 {object} types.ResponseDoctor
+// @Param doctorId query int false "Doctor Id"
+// @Success 200 {object} types.HandlerDoctor
 // @Router /api/v1/doctor/detail [get]
 func GetDoctorRoute(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")

@@ -5,15 +5,16 @@ type Doctor struct {
 	DoctorName   string `json:"doctorName"`
 	DoctorSum    string `json:"doctorSum"`
 	ExpYear      int    `json:"expYear"`
-	ClinicName   string `json:"clinicName"`
+	ClinicId     string `json:"clinicId"`
 	EduLocation  string `json:"eduLocation"`
 	Degree       string `json:"degree"`
 	WorkLocation string `json:"workLocation"`
 	Language     string `json:"language"`
+	FileUrl      string `json:"fileUrl"`
 	Description  string `json:"description"`
 }
 
-type ResponseDoctor struct {
+type HandlerDoctor struct {
 	DoctorId     int      `json:"doctorId"`
 	DoctorName   string   `json:"doctorName"`
 	DoctorSum    string   `json:"doctorSum"`
@@ -23,6 +24,7 @@ type ResponseDoctor struct {
 	Degree       string   `json:"degree"`
 	WorkLocation []string `json:"workLocation"`
 	Language     []string `json:"language"`
+	FileURL      string   `json:"fileUrl"`
 	Description  string   `json:"description"`
 }
 
@@ -31,5 +33,6 @@ type ListDoctor struct {
 	DoctorName   string   `json:"doctorName"`
 	ClinicName   string   `json:"clinicName"`
 	WorkLocation []string `json:"workLocation"`
+	FileURL      string   `json:"fileUrl"`
 	ExpYear      int      `json:"expYear"`
 }

@@ -23,7 +23,7 @@ func ListDoctor() ([]types.ListDoctor, error) {
 		"d.exp_year, " +
 		"cl.clinic_name " +
 		"FROM doctor d " +
-		"LEFT JOIN clinic cl ON cl.clinic_id = d.clinic_id"
+		"LEFT JOIN clinic cl ON cl.clinic_id = d.clinic_id ORDER BY d.doctor_id ASC"
 
 	rows, err := db.Query(query)
 

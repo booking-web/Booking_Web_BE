@@ -10,11 +10,11 @@ import (
 )
 
 // @Summary Forgot Password
-// @Description Returns Sent to Your Email Successful
+// @Description Return Sent to Your Email Successful
 // @Tags Users
 // @Accept  json
 // @Produce  json
-// @Param email query string true "email"
+// @Param email query string true "User's Email"
 // @Success 200 {object} handlers.ResponseDataType
 // @Router /api/v1/forgot-password [get]
 func ForgotPassRoute(w http.ResponseWriter, r *http.Request) {

@@ -10,7 +10,7 @@ import (
 )
 
 // @Summary Login
-// @Description Returns Login Successful
+// @Description Return Login Successful
 // @Tags Users
 // @Accept  json
 // @Produce  json

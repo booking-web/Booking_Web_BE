@@ -12,11 +12,11 @@ import (
 )
 
 // @Summary Change Password
-// @Description Returns Change Password Successful
+// @Description Return Change Password Successful
 // @Tags Users
 // @Accept  json
 // @Produce  json
-// @Param userLogin body handlers.ForgotPass true "Login"
+// @Param userLogin body handlers.ForgotPass true "User Login"
 // @Param userId query int true "userId"
 // @Success 200 {object} handlers.ResponseDataType
 // @Router /api/v1/change-password [post]

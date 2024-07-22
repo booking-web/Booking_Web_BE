@@ -17,7 +17,7 @@ const docTemplate = `{
     "paths": {
         "/api/v1/change-password": {
             "post": {
-                "description": "Returns Change Password Successful",
+                "description": "Return Change Password Successful",
                 "consumes": [
                     "application/json"
                 ],
@@ -30,7 +30,7 @@ const docTemplate = `{
                 "summary": "Change Password",
                 "parameters": [
                     {
-                        "description": "Login",
+                        "description": "User Login",
                         "name": "userLogin",
                         "in": "body",
                         "required": true,
@@ -56,9 +56,9 @@ const docTemplate = `{
                 }
             }
         },
-        "/api/v1/doctor/detail": {
-            "get": {
-                "description": "Returns List of Doctors",
+        "/api/v1/doctor/add": {
+            "post": {
+                "description": "Return Add Doctor Successful",
                 "consumes": [
                     "application/json"
                 ],
@@ -68,12 +68,46 @@ const docTemplate = `{
                 "tags": [
                     "Doctors"
                 ],
-                "summary": "Get Doctors List",
+                "summary": "Add Doctor",
                 "parameters": [
                     {
-                        "type": "string",
-                        "description": "Doctor Name",
-                        "name": "name",
+                        "description": "Add a New Doctor",
+                        "name": "doctor",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/types.HandlerDoctor"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.ResponseDataType"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/doctor/detail": {
+            "get": {
+                "description": "Return Detail Information of Doctors",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Doctors"
+                ],
+                "summary": "Get Detail Information",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Doctor Id",
+                        "name": "doctorId",
                         "in": "query"
                     }
                 ],
@@ -81,7 +115,30 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.ResponseDoctor"
+                            "$ref": "#/definitions/types.HandlerDoctor"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/doctor/list": {
+            "get": {
+                "description": "Return A List of Doctors",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Doctors"
+                ],
+                "summary": "Get List Doctor",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.ResponseDataType"
                         }
                     }
                 }
@@ -89,7 +146,7 @@ const docTemplate = `{
         },
         "/api/v1/forgot-password": {
             "get": {
-                "description": "Returns Sent to Your Email Successful",
+                "description": "Return Sent to Your Email Successful",
                 "consumes": [
                     "application/json"
                 ],
@@ -103,7 +160,7 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "email",
+                        "description": "User's Email",
                         "name": "email",
                         "in": "query",
                         "required": true
@@ -157,7 +214,7 @@ const docTemplate = `{
         },
         "/api/v1/login": {
             "post": {
-                "description": "Returns Login Successful",
+                "description": "Return Login Successful",
                 "consumes": [
                     "application/json"
                 ],
@@ -191,7 +248,7 @@ const docTemplate = `{
         },
         "/api/v1/sign-up": {
             "post": {
-                "description": "Returns  Sign Up Successful",
+                "description": "Return Sign Up Successful",
                 "consumes": [
                     "application/json"
                 ],
@@ -204,7 +261,7 @@ const docTemplate = `{
                 "summary": "Sign Up Account",
                 "parameters": [
                     {
-                        "description": "New User",
+                        "description": "userId to Add",
                         "name": "userId",
                         "in": "body",
                         "required": true,
@@ -259,7 +316,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.ResponseDoctor": {
+        "types.HandlerDoctor": {
             "type": "object",
             "properties": {
                 "clinicName": {
@@ -285,6 +342,9 @@ const docTemplate = `{
                 },
                 "expYear": {
                     "type": "integer"
+                },
+                "fileUrl": {
+                    "type": "string"
                 },
                 "language": {
                     "type": "array",

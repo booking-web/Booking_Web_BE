@@ -1,13 +1,15 @@
 package pkg
 
 import (
+	"database/sql"
 	"errors"
 
+	"github.com/billzayy/Booking_Web_BE/internal/db/common"
 	"github.com/billzayy/Booking_Web_BE/internal/types"
 )
 
-func ConvertSameDoctor(doctorList []types.Doctor) ([]types.ResponseDoctor, error) {
-	resultSlice := []types.ResponseDoctor{}
+func ConvertSameDoctor(doctorList []types.Doctor, db *sql.DB) ([]types.HandlerDoctor, error) {
+	resultSlice := []types.HandlerDoctor{}
 
 	workList := []string{}
 	languageList := []string{}
@@ -23,20 +25,35 @@ func ConvertSameDoctor(doctorList []types.Doctor) ([]types.ResponseDoctor, error
 		languageList = append(languageList, v.Language)
 	}
 
-	test := types.ResponseDoctor{
+	test := types.HandlerDoctor{
 		DoctorId:     sameList.DoctorId,
 		DoctorName:   sameList.DoctorName,
 		DoctorSum:    sameList.DoctorSum,
 		ExpYear:      sameList.ExpYear,
-		ClinicName:   sameList.ClinicName,
+		ClinicName:   common.GetClinicByDoctor(sameList.DoctorId, db),
 		EduLocation:  sameList.EduLocation,
 		Degree:       sameList.Degree,
-		WorkLocation: workList,
-		Language:     languageList,
+		WorkLocation: convertSameList(workList),
+		Language:     convertSameList(languageList),
 		Description:  sameList.Description,
 	}
 
 	resultSlice = append(resultSlice, test)
 
 	return resultSlice, nil
+}
+
+func convertSameList(slice []string) []string {
+	var result []string
+
+	for i := range slice {
+		if len(result) == 0 {
+			result = append(result, slice[i])
+		}
+
+		if result[len(result)-1] != slice[i] {
+			result = append(result, slice[i])
+		}
+	}
+	return result
 }

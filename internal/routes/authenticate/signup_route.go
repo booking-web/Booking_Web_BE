@@ -11,11 +11,11 @@ import (
 )
 
 // @Summary Sign Up Account
-// @Description Returns  Sign Up Successful
+// @Description Return Sign Up Successful
 // @Tags Users
 // @Accept  json
 // @Produce  json
-// @Param userId body types.Users true "New User"
+// @Param userId body types.Users true "userId to Add"
 // @Success 200 {object} handlers.ResponseDataType
 // @Router /api/v1/sign-up [post]
 func SignUpRoute(w http.ResponseWriter, r *http.Request) {

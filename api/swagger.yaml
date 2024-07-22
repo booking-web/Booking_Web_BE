@@ -21,7 +21,7 @@ definitions:
       statusCode:
         type: integer
     type: object
-  types.ResponseDoctor:
+  types.HandlerDoctor:
     properties:
       clinicName:
         type: string
@@ -39,6 +39,8 @@ definitions:
         type: string
       expYear:
         type: integer
+      fileUrl:
+        type: string
       language:
         items:
           type: string
@@ -75,9 +77,9 @@ paths:
     post:
       consumes:
       - application/json
-      description: Returns Change Password Successful
+      description: Return Change Password Successful
       parameters:
-      - description: Login
+      - description: User Login
         in: body
         name: userLogin
         required: true
@@ -98,33 +100,70 @@ paths:
       summary: Change Password
       tags:
       - Users
-  /api/v1/doctor/detail:
-    get:
+  /api/v1/doctor/add:
+    post:
       consumes:
       - application/json
-      description: Returns List of Doctors
+      description: Return Add Doctor Successful
       parameters:
-      - description: Doctor Name
-        in: query
-        name: name
-        type: string
+      - description: Add a New Doctor
+        in: body
+        name: doctor
+        required: true
+        schema:
+          $ref: '#/definitions/types.HandlerDoctor'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/types.ResponseDoctor'
-      summary: Get Doctors List
+            $ref: '#/definitions/handlers.ResponseDataType'
+      summary: Add Doctor
+      tags:
+      - Doctors
+  /api/v1/doctor/detail:
+    get:
+      consumes:
+      - application/json
+      description: Return Detail Information of Doctors
+      parameters:
+      - description: Doctor Id
+        in: query
+        name: doctorId
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.HandlerDoctor'
+      summary: Get Detail Information
+      tags:
+      - Doctors
+  /api/v1/doctor/list:
+    get:
+      consumes:
+      - application/json
+      description: Return A List of Doctors
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.ResponseDataType'
+      summary: Get List Doctor
       tags:
       - Doctors
   /api/v1/forgot-password:
     get:
       consumes:
       - application/json
-      description: Returns Sent to Your Email Successful
+      description: Return Sent to Your Email Successful
       parameters:
-      - description: email
+      - description: User's Email
         in: query
         name: email
         required: true
@@ -165,7 +204,7 @@ paths:
     post:
       consumes:
       - application/json
-      description: Returns Login Successful
+      description: Return Login Successful
       parameters:
       - description: Login
         in: body
@@ -187,9 +226,9 @@ paths:
     post:
       consumes:
       - application/json
-      description: Returns  Sign Up Successful
+      description: Return Sign Up Successful
       parameters:
-      - description: New User
+      - description: userId to Add
         in: body
         name: userId
         required: true

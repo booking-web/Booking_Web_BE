@@ -47,6 +47,7 @@ func doctorMux() *http.ServeMux {
 
 	mux.HandleFunc("/detail", doctor.GetDoctorRoute)
 	mux.HandleFunc("/list", doctor.GetListDoctorRoute)
+	mux.HandleFunc("/add", doctor.AddDoctorRoute)
 
 	return mux
 }
