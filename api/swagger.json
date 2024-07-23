@@ -4,6 +4,72 @@
         "contact": {}
     },
     "paths": {
+        "/api/v1/admin/add-doctor": {
+            "post": {
+                "description": "Return Add Doctor Successful",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Admins"
+                ],
+                "summary": "Add Doctor",
+                "parameters": [
+                    {
+                        "description": "Add a New Doctor",
+                        "name": "doctor",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/types.HandlerDoctor"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.ResponseDataType"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/delete-doctor": {
+            "delete": {
+                "description": "Return Delete Doctor Successful",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Admins"
+                ],
+                "summary": "Delete Doctor",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Delete a Doctor",
+                        "name": "doctorId",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.ResponseDataType"
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/change-password": {
             "post": {
                 "description": "Return Change Password Successful",
@@ -33,40 +99,6 @@
                         "name": "userId",
                         "in": "query",
                         "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/handlers.ResponseDataType"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/v1/doctor/add": {
-            "post": {
-                "description": "Return Add Doctor Successful",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Doctors"
-                ],
-                "summary": "Add Doctor",
-                "parameters": [
-                    {
-                        "description": "Add a New Doctor",
-                        "name": "doctor",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/types.HandlerDoctor"
-                        }
                     }
                 ],
                 "responses": {

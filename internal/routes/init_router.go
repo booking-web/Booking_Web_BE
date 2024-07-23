@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/billzayy/Booking_Web_BE/api"
+	"github.com/billzayy/Booking_Web_BE/internal/routes/admin"
 	"github.com/billzayy/Booking_Web_BE/internal/routes/authenticate"
 	"github.com/billzayy/Booking_Web_BE/internal/routes/doctor"
 	"github.com/billzayy/Booking_Web_BE/internal/routes/user"
@@ -26,6 +27,7 @@ func NewRouter() http.Handler {
 	// Group APIs
 	mux.Handle("/api/v1/", http.StripPrefix("/api/v1", userMux()))
 	mux.Handle("/api/v1/doctor/", http.StripPrefix("/api/v1/doctor", doctorMux()))
+	mux.Handle("/api/v1/admin/", http.StripPrefix("/api/v1/admin", adminMux()))
 
 	return mux
 }
@@ -47,7 +49,15 @@ func doctorMux() *http.ServeMux {
 
 	mux.HandleFunc("/detail", doctor.GetDoctorRoute)
 	mux.HandleFunc("/list", doctor.GetListDoctorRoute)
-	mux.HandleFunc("/add", doctor.AddDoctorRoute)
+
+	return mux
+}
+
+func adminMux() *http.ServeMux {
+	mux := http.NewServeMux()
+
+	mux.HandleFunc("/add-doctor", admin.AddDoctorRoute)
+	mux.HandleFunc("/delete-doctor", admin.DeleteDoctor)
 
 	return mux
 }

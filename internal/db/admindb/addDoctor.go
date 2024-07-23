@@ -1,4 +1,4 @@
-package doctordb
+package admindb
 
 import (
 	"errors"
@@ -8,7 +8,7 @@ import (
 	"github.com/billzayy/Booking_Web_BE/internal/types"
 )
 
-func AddDoctor(input types.HandlerDoctor) error {
+func AddDoctorDB(input types.HandlerDoctor) error {
 	db, err := db.ConnectPostgres()
 
 	if err != nil {

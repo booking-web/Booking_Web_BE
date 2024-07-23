@@ -73,6 +73,49 @@ definitions:
 info:
   contact: {}
 paths:
+  /api/v1/admin/add-doctor:
+    post:
+      consumes:
+      - application/json
+      description: Return Add Doctor Successful
+      parameters:
+      - description: Add a New Doctor
+        in: body
+        name: doctor
+        required: true
+        schema:
+          $ref: '#/definitions/types.HandlerDoctor'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.ResponseDataType'
+      summary: Add Doctor
+      tags:
+      - Admins
+  /api/v1/admin/delete-doctor:
+    delete:
+      consumes:
+      - application/json
+      description: Return Delete Doctor Successful
+      parameters:
+      - description: Delete a Doctor
+        in: query
+        name: doctorId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.ResponseDataType'
+      summary: Delete Doctor
+      tags:
+      - Admins
   /api/v1/change-password:
     post:
       consumes:
@@ -100,28 +143,6 @@ paths:
       summary: Change Password
       tags:
       - Users
-  /api/v1/doctor/add:
-    post:
-      consumes:
-      - application/json
-      description: Return Add Doctor Successful
-      parameters:
-      - description: Add a New Doctor
-        in: body
-        name: doctor
-        required: true
-        schema:
-          $ref: '#/definitions/types.HandlerDoctor'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/handlers.ResponseDataType'
-      summary: Add Doctor
-      tags:
-      - Doctors
   /api/v1/doctor/detail:
     get:
       consumes:
