@@ -111,6 +111,42 @@
                 }
             }
         },
+        "/api/v1/delete-user": {
+            "delete": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Returns Delete Successful",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Delete user",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "User Id",
+                        "name": "userId",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.ResponseDataType"
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/doctor/detail": {
             "get": {
                 "description": "Return Detail Information of Doctors",

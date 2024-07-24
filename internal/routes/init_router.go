@@ -40,6 +40,7 @@ func userMux() *http.ServeMux {
 	mux.HandleFunc("/get-user", user.GetUserByIdRoute)
 	mux.HandleFunc("/sign-up", authenticate.SignUpRoute)
 	mux.HandleFunc("/login", authenticate.LogInRoute)
+	mux.HandleFunc("/delete-user", user.DeleteUserRoute)
 
 	return mux
 }

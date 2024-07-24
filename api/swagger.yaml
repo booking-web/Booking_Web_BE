@@ -143,6 +143,28 @@ paths:
       summary: Change Password
       tags:
       - Users
+  /api/v1/delete-user:
+    delete:
+      consumes:
+      - application/json
+      description: Returns Delete Successful
+      parameters:
+      - description: User Id
+        in: query
+        name: userId
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.ResponseDataType'
+      security:
+      - Bearer: []
+      summary: Delete user
+      tags:
+      - Users
   /api/v1/doctor/detail:
     get:
       consumes:
