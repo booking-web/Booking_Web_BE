@@ -41,7 +41,7 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 		r.ParseMultipartForm(10 << 20) // 10 MB
 
 		// Retrieve the file from the form data
-		file, handler, err := r.FormFile("value")
+		file, handler, err := r.FormFile("image")
 		if err != nil {
 			handlers.ResponseData(w, http.StatusNotFound, "Error Retrieving the File")
 			return
@@ -50,7 +50,7 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 
 		var result handlers.UpdateUserType
 
-		err = json.Unmarshal([]byte(r.FormValue("text")), &result)
+		err = json.Unmarshal([]byte(r.FormValue("value")), &result)
 		if err != nil {
 			handlers.ResponseData(w, http.StatusBadRequest, err.Error())
 			return
