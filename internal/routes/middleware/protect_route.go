@@ -1,4 +1,4 @@
-package protectroute
+package middleware
 
 import (
 	"fmt"

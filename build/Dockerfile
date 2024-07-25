@@ -15,11 +15,9 @@ COPY .. .
 # Copy the source code from the "cmd" folder to the Docker image
 COPY cmd/main.go .
 
-# Navigate to the internal directory and copy the .env file
-# WORKDIR /app
+# Navigate to the directory and copy files
 RUN mkdir -p internal && cp ./internal/.env .
 
-# WORKDIR /app
 RUN mkdir -p templates && cp ./templates/responseEmail.html .
 
 # Compile the Go application
@@ -36,6 +34,9 @@ COPY --from=builder /app/main /app
 COPY --from=builder /app/internal/.env /app/internal/
 
 COPY --from=builder /app/templates/responseEmail.html /app/templates/
+
+# Explicitly copy the entire assets directory from the builder stage
+COPY --from=builder /app/assets /app/assets
 
 # Specify the entry point for the Docker container
 ENTRYPOINT ["/app/main"]

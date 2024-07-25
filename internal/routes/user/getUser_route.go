@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/billzayy/Booking_Web_BE/internal/db/userdb"
-	protectroute "github.com/billzayy/Booking_Web_BE/internal/routes/protect_route"
+	protectroute "github.com/billzayy/Booking_Web_BE/internal/routes/middleware"
 
 	"github.com/billzayy/Booking_Web_BE/internal/handlers"
 )

@@ -287,6 +287,34 @@ paths:
       summary: Sign Up Account
       tags:
       - Users
+  /api/v1/update-user:
+    patch:
+      consumes:
+      - multipart/form-data
+      description: Returns Delete Successful
+      parameters:
+      - description: Image File
+        in: formData
+        name: image
+        required: true
+        type: file
+      - description: User Value
+        in: formData
+        name: value
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.ResponseDataType'
+      security:
+      - Bearer: []
+      summary: Delete user
+      tags:
+      - Users
 securityDefinitions:
   Bearer:
     in: header

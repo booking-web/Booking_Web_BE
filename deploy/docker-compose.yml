@@ -9,6 +9,8 @@ services:
       - jiohealth
     links:
       - db
+    volumes:
+      - ../assets:/app/assets
   
   db:
     image: postgres

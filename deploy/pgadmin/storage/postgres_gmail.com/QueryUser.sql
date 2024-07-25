@@ -17,7 +17,8 @@ INSERT INTO work_location(work_location_name) VALUES ('Bệnh viện chợ rẫy
 SELECT * FROM doctor_profile;
 SELECT * FROM doctor;
 SELECT * FROM clinic;
-SELECT * FROM work_location
+SELECT * FROM work_location;
+SELECT * FROM user_attachment;
 
 SELECT d.doctor_name,
 	d.doctor_summary,

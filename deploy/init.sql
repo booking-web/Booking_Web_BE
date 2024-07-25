@@ -18,7 +18,7 @@ CREATE TABLE users(
 
 CREATE TABLE user_attachment(
     user_id     INTEGER         NOT NULL,
-    file_url    VARCHAR(300)    NOT NULL,
+    file_url    VARCHAR(3000)   NULL,
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 

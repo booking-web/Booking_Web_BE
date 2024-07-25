@@ -8,7 +8,7 @@ import (
 
 	"github.com/billzayy/Booking_Web_BE/internal/db/admindb"
 	"github.com/billzayy/Booking_Web_BE/internal/handlers"
-	protectroute "github.com/billzayy/Booking_Web_BE/internal/routes/protect_route"
+	protectroute "github.com/billzayy/Booking_Web_BE/internal/routes/middleware"
 	"github.com/billzayy/Booking_Web_BE/internal/types"
 )
 

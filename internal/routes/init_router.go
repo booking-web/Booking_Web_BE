@@ -22,6 +22,7 @@ func NewRouter() http.Handler {
 	api.SwaggerInfo.Host = "localhost:" + os.Getenv("PORT")
 	api.SwaggerInfo.Schemes = []string{"http", "https"}
 
+	mux.Handle("/images/", http.StripPrefix("/images", http.FileServer(http.Dir("./assets"))))
 	mux.Handle("/swagger/", httpSwagger.WrapHandler)
 
 	// Group APIs
@@ -41,6 +42,7 @@ func userMux() *http.ServeMux {
 	mux.HandleFunc("/sign-up", authenticate.SignUpRoute)
 	mux.HandleFunc("/login", authenticate.LogInRoute)
 	mux.HandleFunc("/delete-user", user.DeleteUserRoute)
+	mux.HandleFunc("/update-user", user.UpdateUser)
 
 	return mux
 }

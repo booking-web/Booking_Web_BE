@@ -10,13 +10,75 @@
 			"name": "Users",
 			"item": [
 				{
+					"name": "/api/v1/get-user?id=8",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjExODM1NTIsInVzZXJJRCI6Ilx1MDAwNCJ9.2k-9ih0MZ5DFApLEulQJq4fBFHChp7jNTerJeLtrVJY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/get-user?userId=4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"get-user"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/forgot-password",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/forgot-password?email=phanletuan2002@gmail.com",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"forgot-password"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "phanletuan2002@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "/api/v1/sign-up",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"Tuan2002@gmail.com\",\n    \"password\": \"20102002\",\n    \"fullName\" : \"Phan Le Tuan\"\n}",
+							"raw": "{\n    \"email\": \"coderbillzay@gmail.com\",\n    \"password\": \"123\",\n    \"fullName\" : \"Le Tuan\",\n    \"roleId\" : 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -39,39 +101,13 @@
 					"response": []
 				},
 				{
-					"name": "/api/v1/get-user?id=8",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/api/v1/get-user?userId=9",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"get-user"
-							],
-							"query": [
-								{
-									"key": "userId",
-									"value": "9"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "/api/v1/login",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"Tuan@gmail.com\",\n    \"password\": \"20102002\"\n}",
+							"raw": "{\n    \"email\": \"coderbillzay@gmail.com\",\n    \"password\": \"123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -88,6 +124,247 @@
 								"api",
 								"v1",
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/change-password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjA3NTQwMjcsInVzZXJJRCI6Ilx1MDAwMSJ9.AACX7FNJnYuShOuuc48WKjSs5cw3NQ0Vs9ITRF9ltIE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"newPassword\" : \"123\",\n    \"confirmPassword\" : \"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/change-password?userId=4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"change-password"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/delete-user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjE5NzE3MjUsInVzZXJJRCI6Ilx1MDAwNSJ9.26686x0Bexz_GqIdqtg69djRItwmBlf9NJhdLX63K1I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/delete-user?userId=5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"delete-user"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/update-user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjIwMDc4NDcsInVzZXJJRCI6Ilx1MDAwNiJ9.KEf-RIeHSbPL-wVs_SIXiIZ1U7ttPpifMCJQdOkcwKA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/tuanphanle/Pictures/leg.png"
+								},
+								{
+									"key": "text",
+									"value": "{\"userId\" : 1, \"email\":\"phanletuan2002@gmail.com\", \"fullName\" : \"Le Tuan\"}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/update-user",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"update-user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Doctors",
+			"item": [
+				{
+					"name": "/api/v1/doctor/detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/doctor/detail?doctorId=24",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"doctor",
+								"detail"
+							],
+							"query": [
+								{
+									"key": "doctorId",
+									"value": "24"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/doctor/list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/doctor/list",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"doctor",
+								"list"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admins",
+			"item": [
+				{
+					"name": "/api/v1/doctor/add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"doctorName\": \"Iris\",\n    \"doctorSum\": \"Philosophy Doctor\",\n    \"expYear\": 6,\n    \"clinicName\": \"Đa Khoa\",\n    \"eduLocation\": \"Đại học Y dược thành phố Hồ Chí Minh\",\n    \"degree\": \"Tiến sĩ Tâm Lí\",\n    \"workLocation\": [\n        \"Đại học Phạm Ngọc Thạch\",\n        \"Đại học Văn Lang\",\n        \"Bệnh viện chợ rẫy\",\n        \"Bệnh viện Nhân Dân Gia Định\"\n    ],\n    \"language\": [\n        \"Vietnamese\",\n        \"English\"\n    ],\n    \"fileUrl\": \"\",\n    \"description\": \"Hi\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/doctor/add",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"doctor",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/admin/delete-doctor",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/admin/delete-doctor?doctorId=23",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"delete-doctor"
+							],
+							"query": [
+								{
+									"key": "doctorId",
+									"value": "23"
+								}
 							]
 						}
 					},
