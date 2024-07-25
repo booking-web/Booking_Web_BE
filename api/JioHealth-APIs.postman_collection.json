@@ -231,10 +231,10 @@
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/Users/tuanphanle/Pictures/leg.png"
+									"src": "/Users/tuanphanle/Library/Mobile Documents/com~apple~CloudDocs/IMG_0004.JPG"
 								},
 								{
-									"key": "text",
+									"key": "value",
 									"value": "{\"userId\" : 1, \"email\":\"phanletuan2002@gmail.com\", \"fullName\" : \"Le Tuan\"}",
 									"type": "text"
 								}
