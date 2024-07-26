@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"strconv"
 
 	"github.com/billzayy/Booking_Web_BE/internal/db/authenticatedb"
 	"github.com/billzayy/Booking_Web_BE/internal/handlers"
@@ -16,8 +15,7 @@ import (
 // @Tags Users
 // @Accept  json
 // @Produce  json
-// @Param userLogin body handlers.ForgotPass true "User Login"
-// @Param userId query int true "userId"
+// @Param changePassword body handlers.ForgotPass true "Change Password"
 // @Success 200 {object} handlers.ResponseDataType
 // @Router /api/v1/change-password [post]
 func ChangePassRoute(w http.ResponseWriter, r *http.Request) {
@@ -28,15 +26,7 @@ func ChangePassRoute(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	userId := r.URL.Query().Get("userId")
-
 	body, err := io.ReadAll(r.Body)
-
-	if err != nil {
-		panic(err)
-	}
-
-	convertedUserId, err := strconv.Atoi(userId)
 
 	if err != nil {
 		panic(err)
@@ -50,7 +40,7 @@ func ChangePassRoute(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	result, err := authenticatedb.ChangePassDB(convertedUserId, changePass)
+	result, err := authenticatedb.ChangePassDB(changePass.Email, changePass)
 
 	if err != nil {
 		handlers.ResponseData(w, http.StatusBadRequest, err.Error())
@@ -58,7 +48,7 @@ func ChangePassRoute(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if result == -1 {
-		handlers.ResponseData(w, http.StatusNotFound, fmt.Sprintf("user %v does not existed !", convertedUserId))
+		handlers.ResponseData(w, http.StatusNotFound, fmt.Sprintf("user %v does not existed !", changePass.Email))
 		return
 	} else if result == 0 {
 		handlers.ResponseData(w, http.StatusInternalServerError, err)

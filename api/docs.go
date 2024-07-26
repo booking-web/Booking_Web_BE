@@ -96,20 +96,13 @@ const docTemplate = `{
                 "summary": "Change Password",
                 "parameters": [
                     {
-                        "description": "User Login",
-                        "name": "userLogin",
+                        "description": "Change Password",
+                        "name": "changePassword",
                         "in": "body",
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/handlers.ForgotPass"
                         }
-                    },
-                    {
-                        "type": "integer",
-                        "description": "userId",
-                        "name": "userId",
-                        "in": "query",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -213,7 +206,7 @@ const docTemplate = `{
             }
         },
         "/api/v1/forgot-password": {
-            "get": {
+            "post": {
                 "description": "Return Sent to Your Email Successful",
                 "consumes": [
                     "application/json"
@@ -398,6 +391,9 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "confirmPassword": {
+                    "type": "string"
+                },
+                "email": {
                     "type": "string"
                 },
                 "newPassword": {

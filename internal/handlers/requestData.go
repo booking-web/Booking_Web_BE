@@ -6,6 +6,7 @@ type Login struct {
 }
 
 type ForgotPass struct {
+	Email           string `json:"email"`
 	NewPassword     string `json:"newPassword"`
 	ConfirmPassword string `json:"confirmPassword"`
 }

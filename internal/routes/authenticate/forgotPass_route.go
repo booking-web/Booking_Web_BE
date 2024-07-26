@@ -16,11 +16,11 @@ import (
 // @Produce  json
 // @Param email query string true "User's Email"
 // @Success 200 {object} handlers.ResponseDataType
-// @Router /api/v1/forgot-password [get]
+// @Router /api/v1/forgot-password [post]
 func ForgotPassRoute(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
-	if r.Method != http.MethodGet {
+	if r.Method != http.MethodPost {
 		handlers.ResponseData(w, http.StatusMethodNotAllowed, "Invalid request method")
 		return
 	}

@@ -3,6 +3,8 @@ definitions:
     properties:
       confirmPassword:
         type: string
+      email:
+        type: string
       newPassword:
         type: string
     type: object
@@ -122,17 +124,12 @@ paths:
       - application/json
       description: Return Change Password Successful
       parameters:
-      - description: User Login
+      - description: Change Password
         in: body
-        name: userLogin
+        name: changePassword
         required: true
         schema:
           $ref: '#/definitions/handlers.ForgotPass'
-      - description: userId
-        in: query
-        name: userId
-        required: true
-        type: integer
       produces:
       - application/json
       responses:
@@ -201,7 +198,7 @@ paths:
       tags:
       - Doctors
   /api/v1/forgot-password:
-    get:
+    post:
       consumes:
       - application/json
       description: Return Sent to Your Email Successful

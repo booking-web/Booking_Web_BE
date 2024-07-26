@@ -9,7 +9,7 @@ import (
 	"github.com/billzayy/Booking_Web_BE/internal/pkg"
 )
 
-func ChangePassDB(userId int, input handlers.ForgotPass) (int, error) {
+func ChangePassDB(receiverMail string, input handlers.ForgotPass) (int, error) {
 	db, err := db.ConnectPostgres()
 
 	if err != nil {
@@ -18,7 +18,7 @@ func ChangePassDB(userId int, input handlers.ForgotPass) (int, error) {
 
 	defer db.Close()
 
-	checkedUserExisted, err := pkg.CheckUser(userId)
+	checkedUserExisted, err := pkg.CheckExistedEmail(receiverMail)
 
 	if err != nil {
 		return 0, err
@@ -32,7 +32,7 @@ func ChangePassDB(userId int, input handlers.ForgotPass) (int, error) {
 				return 0, err
 			}
 
-			query := fmt.Sprintf("UPDATE users SET password = '%s' WHERE user_id = %v", newPassword, userId)
+			query := fmt.Sprintf("UPDATE users SET password = '%s' WHERE email = '%v'", newPassword, receiverMail)
 
 			_, err = db.Exec(query)
 
