@@ -11,7 +11,9 @@ main
 /internal/.env
 /vendor
 
-/assets
+/assets/Users/*
+/assets/Admins/*
+/assets/Doctors/*
 
 # Remove no neccessary file on mac
 #.DS_Store

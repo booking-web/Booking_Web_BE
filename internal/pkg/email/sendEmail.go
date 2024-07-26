@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	changeLink = "http://localhost:5173/"
+	changeLink = "http://localhost:5173/auth-page"
 	mainPage   = "https://jiohealth.com/"
 )
 
