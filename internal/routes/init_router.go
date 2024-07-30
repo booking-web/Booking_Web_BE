@@ -52,6 +52,7 @@ func doctorMux() *http.ServeMux {
 
 	mux.HandleFunc("/detail", doctor.GetDoctorRoute)
 	mux.HandleFunc("/list", doctor.GetListDoctorRoute)
+	mux.HandleFunc("/update", doctor.UpdateDoctorRoute)
 
 	return mux
 }
@@ -61,6 +62,7 @@ func adminMux() *http.ServeMux {
 
 	mux.HandleFunc("/add-doctor", admin.AddDoctorRoute)
 	mux.HandleFunc("/delete-doctor", admin.DeleteDoctor)
+	mux.HandleFunc("/delete-user", user.DeleteUserRoute)
 
 	return mux
 }

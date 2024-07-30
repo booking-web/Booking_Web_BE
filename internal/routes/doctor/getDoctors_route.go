@@ -36,7 +36,7 @@ func GetDoctorRoute(w http.ResponseWriter, r *http.Request) {
 	data, err := doctordb.GetDoctorById(input)
 
 	if err != nil {
-		handlers.ResponseData(w, http.StatusBadRequest, err.Error())
+		handlers.ResponseData(w, http.StatusNotFound, err.Error())
 		return
 	}
 

@@ -18,7 +18,7 @@ import (
 // @Accept  json
 // @Produce  json
 // @Param doctor body types.HandlerDoctor true "Add a New Doctor"
-// @Success 200 {object} handlers.ResponseDataType
+// @Success 201 {object} handlers.ResponseDataType
 // @Router /api/v1/admin/add-doctor [post]
 func AddDoctorRoute(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
@@ -58,7 +58,7 @@ func AddDoctorRoute(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		handlers.ResponseData(w, http.StatusOK, "Add Doctor Successful")
+		handlers.ResponseData(w, http.StatusCreated, "Add Doctor Successful")
 	} else {
 		handlers.ResponseData(w, http.StatusUnauthorized, errors.New("Unauthorized"))
 		return

@@ -18,6 +18,16 @@ import (
 // @Security  Bearer
 // @Success 200 {object} handlers.ResponseDataType
 // @Router /api/v1/delete-user [delete]
+
+// @Summary Delete user
+// @Description Returns Delete Successful
+// @Tags Admins
+// @Accept  json
+// @Produce  json
+// @Param userId query int false "User Id"
+// @Security  Bearer
+// @Success 200 {object} handlers.ResponseDataType
+// @Router /api/v1/admin/delete-user [delete]
 func DeleteUserRoute(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 

@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/billzayy/Booking_Web_BE/internal/db"
-	"github.com/billzayy/Booking_Web_BE/internal/pkg"
+	"github.com/billzayy/Booking_Web_BE/internal/db/common"
 	"github.com/billzayy/Booking_Web_BE/internal/types"
 )
 
@@ -69,7 +69,7 @@ func GetDoctorById(doctorId int) (types.HandlerDoctor, error) {
 	}
 	defer rows.Close()
 
-	result, err := pkg.ConvertSameDoctor(doctorList, db)
+	result, err := common.ConvertSameDoctor(doctorList, db)
 
 	if err != nil {
 		return types.HandlerDoctor{}, err

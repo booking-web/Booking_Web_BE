@@ -90,8 +90,8 @@ paths:
       produces:
       - application/json
       responses:
-        "200":
-          description: OK
+        "201":
+          description: Created
           schema:
             $ref: '#/definitions/handlers.ResponseDataType'
       summary: Add Doctor
@@ -118,6 +118,28 @@ paths:
       summary: Delete Doctor
       tags:
       - Admins
+  /api/v1/admin/delete-user:
+    delete:
+      consumes:
+      - application/json
+      description: Returns Delete Successful
+      parameters:
+      - description: User Id
+        in: query
+        name: userId
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.ResponseDataType'
+      security:
+      - Bearer: []
+      summary: Delete user
+      tags:
+      - Admins
   /api/v1/change-password:
     post:
       consumes:
@@ -138,28 +160,6 @@ paths:
           schema:
             $ref: '#/definitions/handlers.ResponseDataType'
       summary: Change Password
-      tags:
-      - Users
-  /api/v1/delete-user:
-    delete:
-      consumes:
-      - application/json
-      description: Returns Delete Successful
-      parameters:
-      - description: User Id
-        in: query
-        name: userId
-        type: integer
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/handlers.ResponseDataType'
-      security:
-      - Bearer: []
-      summary: Delete user
       tags:
       - Users
   /api/v1/doctor/detail:
@@ -195,6 +195,27 @@ paths:
           schema:
             $ref: '#/definitions/handlers.ResponseDataType'
       summary: Get List Doctor
+      tags:
+      - Doctors
+  /api/v1/doctor/update:
+    patch:
+      consumes:
+      - application/json
+      description: Return A Update Doctor Successful
+      parameters:
+      - description: Doctor Information
+        in: body
+        name: doctorId
+        schema:
+          $ref: '#/definitions/types.HandlerDoctor'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.ResponseDataType'
+      summary: Update Doctor
       tags:
       - Doctors
   /api/v1/forgot-password:
@@ -277,8 +298,8 @@ paths:
       produces:
       - application/json
       responses:
-        "200":
-          description: OK
+        "201":
+          description: Created
           schema:
             $ref: '#/definitions/handlers.ResponseDataType'
       summary: Sign Up Account

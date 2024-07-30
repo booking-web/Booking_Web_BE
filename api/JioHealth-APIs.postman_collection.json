@@ -17,7 +17,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjExODM1NTIsInVzZXJJRCI6Ilx1MDAwNCJ9.2k-9ih0MZ5DFApLEulQJq4fBFHChp7jNTerJeLtrVJY",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjIzNTE4ODMsInVzZXJJRCI6Ilx1MDAwMSJ9.GWRE-vtikYR3CkS7iSKnb0ukFVItbrhSxrUNvzFCqmY",
 									"type": "string"
 								}
 							]
@@ -25,7 +25,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/v1/get-user?userId=4",
+							"raw": "localhost:8080/api/v1/get-user?userId=1",
 							"host": [
 								"localhost"
 							],
@@ -38,7 +38,7 @@
 							"query": [
 								{
 									"key": "userId",
-									"value": "4"
+									"value": "1"
 								}
 							]
 						}
@@ -48,7 +48,7 @@
 				{
 					"name": "/api/v1/forgot-password",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"url": {
 							"raw": "localhost:8080/api/v1/forgot-password?email=phanletuan2002@gmail.com",
@@ -78,7 +78,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"coderbillzay@gmail.com\",\n    \"password\": \"123\",\n    \"fullName\" : \"Le Tuan\",\n    \"roleId\" : 1\n}",
+							"raw": "{\n    \"email\": \"tuanphanle@gmail.com\",\n    \"password\": \"123\",\n    \"fullName\" : \"Le Tuan\",\n    \"roleId\" : 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -107,7 +107,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"coderbillzay@gmail.com\",\n    \"password\": \"123\"\n}",
+							"raw": "{\n    \"email\": \"tuanphanle@gmail.com\",\n    \"password\": \"123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -146,7 +146,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"newPassword\" : \"123\",\n    \"confirmPassword\" : \"123\"\n}",
+							"raw": "{\n    \"email\" : \"phanletuan2002@gmail.com\",\n    \"newPassword\" : \"123\",\n    \"confirmPassword\" : \"123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -154,7 +154,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/v1/change-password?userId=4",
+							"raw": "localhost:8080/api/v1/change-password",
 							"host": [
 								"localhost"
 							],
@@ -163,12 +163,6 @@
 								"api",
 								"v1",
 								"change-password"
-							],
-							"query": [
-								{
-									"key": "userId",
-									"value": "4"
-								}
 							]
 						}
 					},
@@ -182,7 +176,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjE5NzE3MjUsInVzZXJJRCI6Ilx1MDAwNSJ9.26686x0Bexz_GqIdqtg69djRItwmBlf9NJhdLX63K1I",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjIzOTIwNDMsInVzZXJJRCI6Ilx1MDAwNyJ9.BplA03xMVfbN5Gaya-QYeiYeakPo80rCA9rpqb4V9pA",
 									"type": "string"
 								}
 							]
@@ -190,7 +184,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/v1/delete-user?userId=5",
+							"raw": "localhost:8080/api/v1/delete-user?userId=7",
 							"host": [
 								"localhost"
 							],
@@ -203,7 +197,7 @@
 							"query": [
 								{
 									"key": "userId",
-									"value": "5"
+									"value": "7"
 								}
 							]
 						}
@@ -266,7 +260,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/v1/doctor/detail?doctorId=24",
+							"raw": "localhost:8080/api/v1/doctor/detail?doctorId=29",
 							"host": [
 								"localhost"
 							],
@@ -280,7 +274,7 @@
 							"query": [
 								{
 									"key": "doctorId",
-									"value": "24"
+									"value": "29"
 								}
 							]
 						}
@@ -307,6 +301,36 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "/api/v1/doctor/update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"doctorId\": 29,\n        \"doctorName\": \"Iris\",\n        \"doctorSum\": \"Philosophy Doctor\",\n        \"expYear\": 6,\n        \"clinicName\": \"Đa Khoa\",\n        \"eduLocation\": \"Đại học Y dược thành phố Hồ Chí Minh\",\n        \"degree\": \"Tiến sĩ Tâm Lí\",\n        \"workLocation\": [\n            \"Đại học Phạm Ngọc Thạch\",\n            \"Đại học Văn Lang\"\n        ],\n        \"language\": [\n            \"Vietnamese\",\n            \"English\"\n        ],\n        \"fileUrl\": \"\",\n        \"description\": \"Hi\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/doctor/update",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"doctor",
+								"update"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -316,11 +340,21 @@
 				{
 					"name": "/api/v1/doctor/add",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjIzNTE4ODMsInVzZXJJRCI6Ilx1MDAwMSJ9.GWRE-vtikYR3CkS7iSKnb0ukFVItbrhSxrUNvzFCqmY",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"doctorName\": \"Iris\",\n    \"doctorSum\": \"Philosophy Doctor\",\n    \"expYear\": 6,\n    \"clinicName\": \"Đa Khoa\",\n    \"eduLocation\": \"Đại học Y dược thành phố Hồ Chí Minh\",\n    \"degree\": \"Tiến sĩ Tâm Lí\",\n    \"workLocation\": [\n        \"Đại học Phạm Ngọc Thạch\",\n        \"Đại học Văn Lang\",\n        \"Bệnh viện chợ rẫy\",\n        \"Bệnh viện Nhân Dân Gia Định\"\n    ],\n    \"language\": [\n        \"Vietnamese\",\n        \"English\"\n    ],\n    \"fileUrl\": \"\",\n    \"description\": \"Hi\"\n}",
+							"raw": "{\n    \"doctorName\": \"Iris\",\n    \"doctorSum\": \"Philosophy Doctor\",\n    \"expYear\": 6,\n    \"clinicName\": \"Đa Khoa\",\n    \"eduLocation\": \"Đại học Y dược thành phố Hồ Chí Minh\",\n    \"degree\": \"Tiến sĩ Tâm Lí\",\n    \"workLocation\": [\n        \"Đại học Phạm Ngọc Thạch\",\n        \"Đại học Văn Lang\"\n    ],\n    \"language\": [\n        \"Vietnamese\",\n        \"English\"\n    ],\n    \"fileUrl\": \"\",\n    \"description\": \"Hi\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -328,7 +362,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/v1/doctor/add",
+							"raw": "localhost:8080/api/v1/admin/add-doctor",
 							"host": [
 								"localhost"
 							],
@@ -336,8 +370,8 @@
 							"path": [
 								"api",
 								"v1",
-								"doctor",
-								"add"
+								"admin",
+								"add-doctor"
 							]
 						}
 					},

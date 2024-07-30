@@ -16,7 +16,7 @@ import (
 // @Accept  json
 // @Produce  json
 // @Param userId body types.Users true "userId to Add"
-// @Success 200 {object} handlers.ResponseDataType
+// @Success 201 {object} handlers.ResponseDataType
 // @Router /api/v1/sign-up [post]
 func SignUpRoute(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
@@ -51,7 +51,7 @@ func SignUpRoute(w http.ResponseWriter, r *http.Request) {
 	if num == 0 {
 		handlers.ResponseData(w, http.StatusBadRequest, err)
 	} else if num == 1 {
-		handlers.ResponseData(w, http.StatusOK, "Sign Up Successful")
+		handlers.ResponseData(w, http.StatusCreated, "Sign Up Successful")
 	} else {
 		handlers.ResponseData(w, http.StatusBadRequest, "Email is existed !")
 	}

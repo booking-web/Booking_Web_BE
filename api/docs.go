@@ -40,8 +40,8 @@ const docTemplate = `{
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "OK",
+                    "201": {
+                        "description": "Created",
                         "schema": {
                             "$ref": "#/definitions/handlers.ResponseDataType"
                         }
@@ -81,6 +81,42 @@ const docTemplate = `{
                 }
             }
         },
+        "/api/v1/admin/delete-user": {
+            "delete": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Returns Delete Successful",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Admins"
+                ],
+                "summary": "Delete user",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "User Id",
+                        "name": "userId",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.ResponseDataType"
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/change-password": {
             "post": {
                 "description": "Return Change Password Successful",
@@ -103,42 +139,6 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/handlers.ForgotPass"
                         }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/handlers.ResponseDataType"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/v1/delete-user": {
-            "delete": {
-                "security": [
-                    {
-                        "Bearer": []
-                    }
-                ],
-                "description": "Returns Delete Successful",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Users"
-                ],
-                "summary": "Delete user",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "User Id",
-                        "name": "userId",
-                        "in": "query"
                     }
                 ],
                 "responses": {
@@ -195,6 +195,39 @@ const docTemplate = `{
                     "Doctors"
                 ],
                 "summary": "Get List Doctor",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.ResponseDataType"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/doctor/update": {
+            "patch": {
+                "description": "Return A Update Doctor Successful",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Doctors"
+                ],
+                "summary": "Update Doctor",
+                "parameters": [
+                    {
+                        "description": "Doctor Information",
+                        "name": "doctorId",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/types.HandlerDoctor"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -332,8 +365,8 @@ const docTemplate = `{
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "OK",
+                    "201": {
+                        "description": "Created",
                         "schema": {
                             "$ref": "#/definitions/handlers.ResponseDataType"
                         }

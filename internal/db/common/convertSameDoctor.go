@@ -1,10 +1,9 @@
-package pkg
+package common
 
 import (
 	"database/sql"
 	"errors"
 
-	"github.com/billzayy/Booking_Web_BE/internal/db/common"
 	"github.com/billzayy/Booking_Web_BE/internal/types"
 )
 
@@ -30,7 +29,7 @@ func ConvertSameDoctor(doctorList []types.Doctor, db *sql.DB) ([]types.HandlerDo
 		DoctorName:   sameList.DoctorName,
 		DoctorSum:    sameList.DoctorSum,
 		ExpYear:      sameList.ExpYear,
-		ClinicName:   common.GetClinicByDoctor(sameList.DoctorId, db),
+		ClinicName:   GetClinicByDoctor(sameList.DoctorId, db),
 		EduLocation:  sameList.EduLocation,
 		Degree:       sameList.Degree,
 		WorkLocation: convertSameList(workList),

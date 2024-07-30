@@ -18,8 +18,8 @@ SELECT * FROM doctor_profile;
 SELECT * FROM doctor;
 SELECT * FROM clinic;
 SELECT * FROM work_location;
+SELECT * FROM language;
 SELECT * FROM user_attachment;
-
 SELECT d.doctor_name,
 	d.doctor_summary,
 	d.exp_year,
@@ -36,4 +36,4 @@ LEFT JOIN work_location w ON w.work_location_id = dp.work_location
 LEFT JOIN language l ON l.language_id = dp.language
 LEFT JOIN clinic cl ON cl.clinic_id = d.clinic_id
 
-DELETE FROM doctor where doctor_id = 6
+DELETE FROM doctor where doctor_id = 28
