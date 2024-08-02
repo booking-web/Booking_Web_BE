@@ -8,8 +8,8 @@ import (
 	"github.com/billzayy/Booking_Web_BE/internal/types"
 )
 
-func GetUserById(userId string) ([]types.Users, error) {
-	var userList []types.Users
+func GetUserById(userId string) ([]types.ResponseUsers, error) {
+	var userList []types.ResponseUsers
 
 	db, err := db.ConnectPostgres()
 
@@ -34,9 +34,9 @@ func GetUserById(userId string) ([]types.Users, error) {
 	defer db.Close()
 
 	for rows.Next() {
-		var list types.Users
+		var list types.ResponseUsers
 
-		err := rows.Scan(&list.UserId, &list.Email, &list.FullName, &list.Password, &list.RoleId)
+		err := rows.Scan(&list.UserId, &list.Email, &list.FullName, &list.FileURL, &list.Role)
 
 		if err != nil {
 			return userList, err

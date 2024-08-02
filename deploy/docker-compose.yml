@@ -1,10 +1,10 @@
 # version: "3.8"
 services:
   backend:
-    image: coderbillzay/jio-health
+    image: coderbillzay/jio-health-linux
     container_name: backend
     ports:
-      - "8080:8080"
+      - "4879:4879"
     networks:
       - jiohealth
     links:
@@ -34,7 +34,7 @@ services:
     container_name: pgadmin
     # restart: always
     ports:
-      - "80:80"
+      - "80:243"
     environment:
       PGADMIN_DEFAULT_EMAIL: postgres@gmail.com
       PGADMIN_DEFAULT_PASSWORD: postgres
