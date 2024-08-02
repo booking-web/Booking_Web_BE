@@ -3,6 +3,7 @@ package authenticate
 import (
 	"encoding/json"
 	"io"
+	"log"
 	"net/http"
 
 	"github.com/billzayy/Booking_Web_BE/internal/db/authenticatedb"
@@ -37,6 +38,7 @@ func SignUpRoute(w http.ResponseWriter, r *http.Request) {
 	err = json.Unmarshal(body, &user)
 
 	if err != nil {
+		log.Println(err)
 		handlers.ResponseData(w, http.StatusBadRequest, "Invalid Body")
 		return
 	}
@@ -44,15 +46,21 @@ func SignUpRoute(w http.ResponseWriter, r *http.Request) {
 	num, err := authenticatedb.SignUp(user)
 
 	if err != nil {
+		log.Println(err)
 		handlers.ResponseData(w, http.StatusInternalServerError, err.Error())
 		return
 	}
 
 	if num == 0 {
+		log.Println(err)
 		handlers.ResponseData(w, http.StatusBadRequest, err)
+		return
 	} else if num == 1 {
 		handlers.ResponseData(w, http.StatusCreated, "Sign Up Successful")
+		return
 	} else {
+		log.Println(err)
 		handlers.ResponseData(w, http.StatusBadRequest, "Email is existed !")
+		return
 	}
 }

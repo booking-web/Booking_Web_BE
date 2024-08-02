@@ -3,6 +3,7 @@ package user
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/billzayy/Booking_Web_BE/internal/db/userdb"
@@ -43,6 +44,7 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 		// Retrieve the file from the form data
 		file, handler, err := r.FormFile("image")
 		if err != nil {
+			log.Println(err)
 			handlers.ResponseData(w, http.StatusNotFound, "Error Retrieving the File")
 			return
 		}
@@ -52,6 +54,7 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 
 		err = json.Unmarshal([]byte(r.FormValue("value")), &result)
 		if err != nil {
+			log.Println(err)
 			handlers.ResponseData(w, http.StatusBadRequest, err.Error())
 			return
 		}
@@ -59,6 +62,7 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 		err = pkg.SaveImage(file, handler.Filename, "Users")
 
 		if err != nil {
+			log.Println(err)
 			handlers.ResponseData(w, http.StatusInternalServerError, err.Error())
 			return
 		}
@@ -68,12 +72,14 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 		err = userdb.UpdateUserDB(result)
 
 		if err != nil {
+			log.Println(err)
 			handlers.ResponseData(w, http.StatusInternalServerError, err.Error())
 			return
 		}
 
 		handlers.ResponseData(w, http.StatusOK, "Updated Successful !")
 	} else {
+		log.Println(err)
 		handlers.ResponseData(w, http.StatusUnauthorized, "Invalid Token")
 	}
 }

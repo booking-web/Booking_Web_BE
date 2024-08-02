@@ -1,6 +1,7 @@
 package admin
 
 import (
+	"log"
 	"net/http"
 	"strconv"
 
@@ -28,6 +29,7 @@ func DeleteDoctor(w http.ResponseWriter, r *http.Request) {
 	checkAuth, err := protectroute.ProtectedRoute(w, r)
 
 	if err != nil {
+		log.Println(err)
 		handlers.ResponseData(w, http.StatusUnauthorized, err.Error())
 		return
 	}
@@ -38,6 +40,7 @@ func DeleteDoctor(w http.ResponseWriter, r *http.Request) {
 		doctorId, err := strconv.Atoi(request)
 
 		if err != nil {
+			log.Println(err)
 			handlers.ResponseData(w, http.StatusBadRequest, err.Error())
 			return
 		}
@@ -45,6 +48,7 @@ func DeleteDoctor(w http.ResponseWriter, r *http.Request) {
 		err = admindb.DeleteDoctorDB(doctorId)
 
 		if err != nil {
+			log.Println(err)
 			handlers.ResponseData(w, http.StatusInternalServerError, err.Error())
 			return
 		}

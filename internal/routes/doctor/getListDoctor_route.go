@@ -1,6 +1,7 @@
 package doctor
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/billzayy/Booking_Web_BE/internal/db/doctordb"
@@ -25,6 +26,7 @@ func GetListDoctorRoute(w http.ResponseWriter, r *http.Request) {
 	data, err := doctordb.ListDoctor()
 
 	if err != nil {
+		log.Println(err)
 		handlers.ResponseData(w, http.StatusInternalServerError, err.Error())
 		return
 	}

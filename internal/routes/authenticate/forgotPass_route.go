@@ -2,6 +2,7 @@ package authenticate
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/billzayy/Booking_Web_BE/internal/handlers"
@@ -30,11 +31,13 @@ func ForgotPassRoute(w http.ResponseWriter, r *http.Request) {
 	data, err := pkg.CheckExistedEmail(userMail)
 
 	if err != nil {
+		log.Println(err)
 		handlers.ResponseData(w, http.StatusNotFound, err.Error())
 		return
 	}
 
 	if !data {
+		log.Println(err)
 		handlers.ResponseData(w, http.StatusNotFound, fmt.Sprintf("User %v not found!", userMail))
 		return
 	} else {

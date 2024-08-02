@@ -119,4 +119,4 @@ INSERT INTO roles(role_name) VALUES ('User'), ('Admin'),('Doctor');
 
 INSERT INTO language(language_name) VALUES ('Vietnamese') , ('English');
 
-INSERT INTO clinic(clinic_name, clinic_image) VALUES ('Nhi Khoa', ''), ('Đa khoa', ''); 
+INSERT INTO clinic(clinic_name, clinic_image) VALUES ('Nhi Khoa', ''), ('Đa Khoa', ''); 

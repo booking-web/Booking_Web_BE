@@ -2,6 +2,7 @@ package user
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/billzayy/Booking_Web_BE/internal/db/userdb"
@@ -40,11 +41,13 @@ func GetUserByIdRoute(w http.ResponseWriter, r *http.Request) {
 		data, err := userdb.GetUserById(userId)
 
 		if err != nil {
+			log.Println(err)
 			handlers.ResponseData(w, http.StatusNotFound, err.Error())
 			return
 		}
 
 		if len(data) == 0 {
+			log.Println(err)
 			handlers.ResponseData(w, http.StatusNotFound, fmt.Sprintf("User %v not found!", userId))
 			return
 		} else {
@@ -52,6 +55,7 @@ func GetUserByIdRoute(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	} else {
+		log.Println(err)
 		handlers.ResponseData(w, http.StatusUnauthorized, err)
 		return
 	}

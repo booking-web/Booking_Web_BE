@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 
 	"github.com/billzayy/Booking_Web_BE/internal/db/authenticatedb"
@@ -29,7 +30,9 @@ func ChangePassRoute(w http.ResponseWriter, r *http.Request) {
 	body, err := io.ReadAll(r.Body)
 
 	if err != nil {
-		panic(err)
+		log.Println(err)
+		handlers.ResponseData(w, http.StatusBadRequest, "Bad Request")
+		return
 	}
 
 	var changePass handlers.ForgotPass
@@ -37,20 +40,24 @@ func ChangePassRoute(w http.ResponseWriter, r *http.Request) {
 	err = json.Unmarshal(body, &changePass)
 
 	if err != nil {
-		panic(err)
+		handlers.ResponseData(w, http.StatusBadRequest, "Invalid Body")
+		return
 	}
 
 	result, err := authenticatedb.ChangePassDB(changePass.Email, changePass)
 
 	if err != nil {
+		log.Println(err)
 		handlers.ResponseData(w, http.StatusBadRequest, err.Error())
 		return
 	}
 
 	if result == -1 {
+		log.Println(err)
 		handlers.ResponseData(w, http.StatusNotFound, fmt.Sprintf("user %v does not existed !", changePass.Email))
 		return
 	} else if result == 0 {
+		log.Println(err)
 		handlers.ResponseData(w, http.StatusInternalServerError, err)
 		return
 	} else {

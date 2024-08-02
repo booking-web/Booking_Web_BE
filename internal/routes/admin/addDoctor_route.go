@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"io"
+	"log"
 	"net/http"
 
 	"github.com/billzayy/Booking_Web_BE/internal/db/admindb"
@@ -39,6 +40,7 @@ func AddDoctorRoute(w http.ResponseWriter, r *http.Request) {
 		body, err := io.ReadAll(r.Body)
 
 		if err != nil {
+			log.Println(err)
 			handlers.ResponseData(w, http.StatusBadRequest, "Bad Request")
 			return
 		}
@@ -47,6 +49,7 @@ func AddDoctorRoute(w http.ResponseWriter, r *http.Request) {
 		err = json.Unmarshal(body, &doctor)
 
 		if err != nil {
+			log.Println(err)
 			handlers.ResponseData(w, http.StatusBadRequest, "Invalid Body")
 			return
 		}
@@ -54,6 +57,7 @@ func AddDoctorRoute(w http.ResponseWriter, r *http.Request) {
 		err = admindb.AddDoctorDB(doctor)
 
 		if err != nil {
+			log.Println(err)
 			handlers.ResponseData(w, http.StatusBadRequest, "Bad Request")
 			return
 		}

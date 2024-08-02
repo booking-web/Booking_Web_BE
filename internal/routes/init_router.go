@@ -19,7 +19,7 @@ func NewRouter() http.Handler {
 	api.SwaggerInfo.Title = "Swagger GoLang JioHealth"
 	api.SwaggerInfo.Description = "This is a Swagger Golang APIs Server."
 	api.SwaggerInfo.Version = "3.0"
-	api.SwaggerInfo.Host = "localhost:" + os.Getenv("PORT")
+	api.SwaggerInfo.Host = "http://54.166.107.146:" + os.Getenv("PORT")
 	api.SwaggerInfo.Schemes = []string{"http", "https"}
 
 	mux.Handle("/images/", http.StripPrefix("/images", http.FileServer(http.Dir("./assets"))))

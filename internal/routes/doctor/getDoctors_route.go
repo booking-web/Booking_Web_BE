@@ -1,6 +1,7 @@
 package doctor
 
 import (
+	"log"
 	"net/http"
 	"strconv"
 
@@ -29,6 +30,7 @@ func GetDoctorRoute(w http.ResponseWriter, r *http.Request) {
 	input, err := strconv.Atoi(doctorId)
 
 	if err != nil {
+		log.Println(err)
 		handlers.ResponseData(w, http.StatusBadRequest, err.Error())
 		return
 	}
@@ -36,6 +38,7 @@ func GetDoctorRoute(w http.ResponseWriter, r *http.Request) {
 	data, err := doctordb.GetDoctorById(input)
 
 	if err != nil {
+		log.Println(err)
 		handlers.ResponseData(w, http.StatusNotFound, err.Error())
 		return
 	}

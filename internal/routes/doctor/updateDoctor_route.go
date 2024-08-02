@@ -3,6 +3,7 @@ package doctor
 import (
 	"encoding/json"
 	"io"
+	"log"
 	"net/http"
 
 	"github.com/billzayy/Booking_Web_BE/internal/db/doctordb"
@@ -31,6 +32,7 @@ func UpdateDoctorRoute(w http.ResponseWriter, r *http.Request) {
 	body, err := io.ReadAll(r.Body)
 
 	if err != nil {
+		log.Println(err)
 		handlers.ResponseData(w, http.StatusBadRequest, err.Error())
 		return
 	}
@@ -38,6 +40,7 @@ func UpdateDoctorRoute(w http.ResponseWriter, r *http.Request) {
 	err = json.Unmarshal(body, &doctor)
 
 	if err != nil {
+		log.Println(err)
 		handlers.ResponseData(w, http.StatusBadRequest, err.Error())
 		return
 	}
@@ -45,6 +48,7 @@ func UpdateDoctorRoute(w http.ResponseWriter, r *http.Request) {
 	err = doctordb.UpdateDoctorDB(doctor)
 
 	if err != nil {
+		log.Println(err)
 		handlers.ResponseData(w, http.StatusInternalServerError, err.Error())
 		return
 	}

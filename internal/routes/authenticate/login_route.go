@@ -3,6 +3,7 @@ package authenticate
 import (
 	"encoding/json"
 	"io"
+	"log"
 	"net/http"
 
 	"github.com/billzayy/Booking_Web_BE/internal/db/authenticatedb"
@@ -28,6 +29,7 @@ func LogInRoute(w http.ResponseWriter, r *http.Request) {
 	body, err := io.ReadAll(r.Body)
 
 	if err != nil {
+		log.Println(err)
 		handlers.ResponseData(w, http.StatusBadRequest, "Bad Request")
 		return
 	}
@@ -37,6 +39,7 @@ func LogInRoute(w http.ResponseWriter, r *http.Request) {
 	err = json.Unmarshal(body, &user)
 
 	if err != nil {
+		log.Println(err)
 		handlers.ResponseData(w, http.StatusBadRequest, "Bad Request")
 		return
 	}
@@ -46,17 +49,21 @@ func LogInRoute(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		switch err.Error() {
 		case "error connect db":
+			log.Println(err)
 			handlers.ResponseData(w, http.StatusInsufficientStorage, err.Error())
 			return
 
 		case "password error":
+			log.Println(err)
 			handlers.ResponseData(w, http.StatusBadRequest, err.Error())
 			return
 
 		case "error gen token":
+			log.Println(err)
 			handlers.ResponseData(w, http.StatusInternalServerError, err.Error())
 			return
 		default:
+			log.Println(err)
 			handlers.ResponseData(w, http.StatusNotFound, err.Error())
 			return
 		}

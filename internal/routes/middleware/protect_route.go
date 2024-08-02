@@ -2,6 +2,7 @@ package middleware
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 
 	middleware "github.com/billzayy/Booking_Web_BE/internal/pkg/middleware"
@@ -21,6 +22,7 @@ func ProtectedRoute(w http.ResponseWriter, r *http.Request) (bool, error) {
 	_, err := middleware.VerifyToken(tokenString)
 
 	if err != nil {
+		log.Println(err)
 		return false, fmt.Errorf("invalid token")
 	}
 
