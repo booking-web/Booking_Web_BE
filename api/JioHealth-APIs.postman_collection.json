@@ -25,11 +25,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/v1/get-user?userId=1",
+							"raw": "{{HOST}}/api/v1/get-user?userId=1",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -51,11 +50,10 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/v1/forgot-password?email=phanletuan2002@gmail.com",
+							"raw": "{{HOST}}/api/v1/forgot-password?email=phanletuan2002@gmail.com",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -86,11 +84,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/v1/sign-up",
+							"raw": "{{HOST}}/api/v1/sign-up",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -115,11 +112,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/v1/login",
+							"raw": "{{HOST}}/api/v1/login",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -154,11 +150,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/v1/change-password",
+							"raw": "{{HOST}}/api/v1/change-password",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -184,11 +179,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/v1/delete-user?userId=7",
+							"raw": "{{HOST}}/api/v1/delete-user?userId=7",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -260,11 +254,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/v1/doctor/detail?doctorId=29",
+							"raw": "{{HOST}}/api/v1/doctor/detail?doctorId=29",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -287,11 +280,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/v1/doctor/list",
+							"raw": "{{HOST}}/api/v1/doctor/list",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -317,11 +309,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/v1/doctor/update",
+							"raw": "{{HOST}}/api/v1/doctor/update",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -345,7 +336,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjIzNTE4ODMsInVzZXJJRCI6Ilx1MDAwMSJ9.GWRE-vtikYR3CkS7iSKnb0ukFVItbrhSxrUNvzFCqmY",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjI2OTUzODMsInVzZXJJRCI6IlxiIn0.A5GwLn-B7-yYs0qjHLDbyA8mrxvQZlgHPK0OVey5GbQ",
 									"type": "string"
 								}
 							]
@@ -354,7 +345,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"doctorName\": \"Iris\",\n    \"doctorSum\": \"Philosophy Doctor\",\n    \"expYear\": 6,\n    \"clinicName\": \"Đa Khoa\",\n    \"eduLocation\": \"Đại học Y dược thành phố Hồ Chí Minh\",\n    \"degree\": \"Tiến sĩ Tâm Lí\",\n    \"workLocation\": [\n        \"Đại học Phạm Ngọc Thạch\",\n        \"Đại học Văn Lang\"\n    ],\n    \"language\": [\n        \"Vietnamese\",\n        \"English\"\n    ],\n    \"fileUrl\": \"\",\n    \"description\": \"Hi\"\n}",
+							"raw": "{\n    \"doctorName\": \"Iris\",\n    \"doctorSum\": \"Philosophy Doctor\",\n    \"expYear\": 6,\n    \"clinicName\": \"Đa Khoa\",\n    \"eduLocation\": \"Đại học Y dược thành phố Hồ Chí Minh\",\n    \"degree\": \"Tiến sĩ Tâm Lí\",\n    \"workLocation\": [\n        \"Bệnh viện Nhân Dân Gia Định\"\n    ],\n    \"language\": [\n        \"Vietnamese\",\n        \"English\"\n    ],\n    \"fileUrl\": \"\",\n    \"description\": \"Hi\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -362,11 +353,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/v1/admin/add-doctor",
+							"raw": "{{HOST}}/api/v1/admin/add-doctor",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -380,14 +370,23 @@
 				{
 					"name": "/api/v1/admin/delete-doctor",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjI2OTUzODMsInVzZXJJRCI6IlxiIn0.A5GwLn-B7-yYs0qjHLDbyA8mrxvQZlgHPK0OVey5GbQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/v1/admin/delete-doctor?doctorId=23",
+							"raw": "{{HOST}}/api/v1/admin/delete-doctor?doctorId=11",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -397,7 +396,7 @@
 							"query": [
 								{
 									"key": "doctorId",
-									"value": "23"
+									"value": "11"
 								}
 							]
 						}
