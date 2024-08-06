@@ -3,6 +3,7 @@ services:
   backend:
     image: coderbillzay/jio-health-linux
     container_name: backend
+    restart: always
     ports:
       - "4879:4879"
     networks:
@@ -15,7 +16,7 @@ services:
   db:
     image: postgres
     container_name: postgres
-    # restart: always
+    restart: always
     ports:
       - "5432:5432"
     environment:
@@ -32,7 +33,7 @@ services:
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin
-    # restart: always
+    restart: always
     ports:
       - "243:80"
     environment:
